@@ -44,8 +44,8 @@
                 </div>
                 <!-- Topic meta -->
                 <div class="meta">
-                  <span class="date"><small>started {{ idea.created_at | date: "%b %d" }}</small></span>
-                  <span class="author">started by <a href="{{ idea.user.profile_url }}" title="link to {{ idea.user.nickname }}'s profile on {{ idea.user.provider }}">{{ idea.user.nickname }}</a> 
+                  <span class="date"><small>started on {{ idea.created_at | date: "%b %d" }}</small></span>
+                  <span class="author">by <a href="{{ idea.user.profile_url }}" title="link to {{ idea.user.nickname }}'s profile on {{ idea.user.provider }}">{{ idea.user.nickname }}</a> 
                   <a href="{{ idea.user.profile_url }}" title="link to {{ idea.user.nickname }}'s profile on {{ idea.user.provider }}"><img src="{{idea.user.image_url}}" alt="{{ idea.user.nickname }}'s avatar from {{idea.user.provider}}" width="16" height="16" class="avatar" /></a></span>
                   <!--<span class="last-post">last reply by *comment.author* <img src="http://placehold.it/16x16" alt="*comment.author*'s avatar from *comment.author.provider*" class="avatar" /></span>-->
                 </div>
