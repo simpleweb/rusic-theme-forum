@@ -3770,6 +3770,9 @@ hr {
 .add-post {
   width: 210px;
 }
+.add-post.disabled {
+  background: #a2a2a2;
+}
 .alert {
   margin-left: 18px;
 }

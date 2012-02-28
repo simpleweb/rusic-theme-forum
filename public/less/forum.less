@@ -90,7 +90,7 @@ a {
 /* Overrides & miscellaneous global styles */
 .debug { background-color: red; }
 hr { display: none; }
-.add-post { width: 210px; }
+.add-post { width: 210px; &.disabled { background: lighten(@gray, 30%); } }
 .alert { margin-left: 18px; }
 #empty { float: left; position: relative; clear: left; width: 600px; margin: 20px; font-size: 2em; color: @grayLight; text-align: center; line-height: 1.4em; }
 #pagination { float: left; position: relative; clear: left; margin: 0 20px 20px 20px; }
