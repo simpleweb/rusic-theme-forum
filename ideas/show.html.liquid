@@ -40,7 +40,7 @@
               
               <!-- Responses -->
               {% if idea.comments != empty %}
-              {% for comment in idea.comments %}
+              {% for comment in idea.comments reversed %}
               <li class="response">
                 <article>
                   <div class="meta">
@@ -49,7 +49,7 @@
                     <span class="date">{{ comment.created_at | date: "%B %d %Y" }} at {{ comment.created_at | date: "%I:%M%p" }}</span>
                   </div>
                   <div class="content">
-                    {{ comment.body | markdown }}
+                    {{ comment.body | markdown | sort }}
                   </div>
                 </article>
               </li>
