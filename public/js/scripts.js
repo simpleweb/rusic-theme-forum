@@ -6,6 +6,7 @@ $(document).ready(function(){
 	  var button = this;
 	
 	  $(this).addClass('disabled');
+	  $(this).addClass('on');
 	
 	  $.post($(this).attr('the_link'), function(data) {
 		if(data.valid){
