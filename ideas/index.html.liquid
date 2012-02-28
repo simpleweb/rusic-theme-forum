@@ -14,9 +14,9 @@
             {% endif %}
             
             <div id="filter-options" class="btn-group">
-              <a href="{{space.permalink}}" title="Show latest {{ theme.ideas_context }} first" class="btn {% if filter == "own" %}{% else %}{% if sort == "like" %}{% else %}active{% endif %}{% endif %}">Newest first</a>
-              <a href="{{ space.permalink }}?sort=like"title="show most popular {{ theme.ideas_context }} first" class="btn {% if sort == "like" %}active{% endif %}">Most votes</a>
-              {% if current_user %}<a href="{{ space.permalink }}?filter=own" title="show only my {{ theme.ideas_context }}" class="btn {% if filter == "own" %}active{% endif %}">Mine</a>{% endif %}
+              <a href="{{space.permalink}}" title="Show latest {{ theme.ideas_context }} first" class="btn {% if filter == "own" %}{% else %}{% if sort == "like" %}{% else %}active{% endif %}{% endif %}"><i class="icon-asterisk"></i> Newest first</a>
+              <a href="{{ space.permalink }}?sort=like"title="show most popular {{ theme.ideas_context }} first" class="btn {% if sort == "like" %}active{% endif %}"><i class="icon-fire"></i> Most votes</a>
+              {% if current_user %}<a href="{{ space.permalink }}?filter=own" title="show only my {{ theme.ideas_context }}" class="btn {% if filter == "own" %}active{% endif %}"><i class="icon-user"></i> Mine</a>{% endif %}
             </div>
           </div>
       

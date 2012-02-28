@@ -12,12 +12,12 @@
               <h1>{{ idea.title }}</h1>
               <div class="actions">
                   {% if current_user %}
-                  {% if idea.liked? %}<span class="action-like btn disabled"><span class="likecount">{{idea.likes}}</span> votes</span>{% else %}<div class="action-like btn" the_link="{{idea.like_link}}"> <span class="likecount">{{idea.likes}}</span> votes</div>{% endif %}
+                  {% if idea.liked? %}<span class="action-like btn disabled"><i class="icon-ok-circle"></i> <span class="likecount">{{idea.likes}}</span> votes</span>{% else %}<div class="action-like btn" the_link="{{idea.like_link}}"><i class="icon-upload"></i> <span class="likecount">{{idea.likes}}</span> votes</div>{% endif %}
                   {% else %}
                   <span class="action-like btn disabled"><span class="likecount">{{idea.likes}}</span> votes</span>
                   {% endif %}
-                  {% if current_user %}<a href="#add-reply" title="reply to *idea.title*" class="btn">Reply</a>{% endif %}
-                  {% if idea.user.uuid == current_user.uuid %}<a href="{{idea.permalink}}/edit" title="link to edit {{idea.title}}" class="btn">Edit</a>{% endif %}
+                  {% if current_user %}<a href="#add-reply" title="reply to *idea.title*" class="btn"><i class="icon-share-alt"></i> Reply</a>{% endif %}
+                  {% if idea.user.uuid == current_user.uuid %}<a href="{{idea.permalink}}/edit" title="link to edit {{idea.title}}" class="btn"><i class="icon-pencil"></i> Edit</a>{% endif %}
                 </div>
             </header>
           

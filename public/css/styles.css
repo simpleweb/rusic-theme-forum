@@ -3955,7 +3955,7 @@ POST / SINGLE VIEW
   display: block;
   float: left;
   position: relative;
-  width: 350px;
+  width: 320px;
   margin: 12px 20px;
   padding: 0;
   line-height: 1.3em;
@@ -4309,6 +4309,10 @@ SIDEBAR & WIDGETS
 }
 #sidebar #add-new {
   background: #e0f5fe;
+}
+#sidebar #add-new i {
+  margin-top: 2px;
+  margin-right: 4px;
 }
 #sidebar #popular-posts ul {
   float: left;
