@@ -1,0 +1,26 @@
+  <!-- Actions -->
+	<div id="actions-bar">
+	  <a href="{{ space.permalink }}" title="return to {{ space.title }} home" class="back-link">&laquo; return to {{ space.title }} home</a>
+	</div>
+	
+	<hr />
+	
+	<!-- Add reply -->
+	<div id="add-new">
+	
+	  <header>
+	  <h1>Add a new topic...</h1>
+	  </header>
+	  
+	  {% if current_user %}
+	  <form id="add-form" class="well" method="post" action="{{space.permalink}}/ideas" enctype="multipart/form-data">
+	  <input id="idea_title" name="idea[title]" type="text" placeholder="Topic title" placeholder="{{theme.idea_context}} title" class="required">
+	  <textarea id="idea_content" name="idea[content]" rows="3" placeholder="Topic content" class="required" class="input-xlarge" placeholder="Your idea here..."></textarea>
+	  <label class="checkbox">
+	    <input type="checkbox" id="social-share" name="idea[should_post_to_social]" value="1" checked="checked" />share this topic to {{ current_user.provider }}?
+	  </label>
+	  <input type="submit" id="submit" value="Post topic" class="btn btn-primary btn-large" />
+	  </form>
+	  {% endif %}
+	
+	</div>

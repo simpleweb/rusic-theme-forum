@@ -1,0 +1,68 @@
+{% if space.ideas != empty %}
+
+  <!-- Actions -->
+    <div id="actions-bar">
+      
+      {% if filter == "own" %}
+      <h1>Showing my topics</h1>
+      {% else %}
+      {% if sort == "like" %}
+      <h1>Topics with most votes</h1>
+      {% else %}
+      <h1>Latest topics</h1>
+      {% endif %}
+      {% endif %}
+      
+      <div id="filter-options" class="btn-group">
+        <a href="{{space.permalink}}" title="Show latest {{ theme.ideas_context }} first" class="btn {% if filter == "own" %}{% else %}{% if sort == "like" %}{% else %}active{% endif %}{% endif %}">Date</a>
+        <a href="{{ space.permalink }}?sort=like"title="show most popular {{ theme.ideas_context }} first" class="btn {% if sort == "like" %}active{% endif %}">Most votes</a>
+        <a href="{{ space.permalink }}?filter=own" title="show only my {{ theme.ideas_context }}" class="btn {% if filter == "own" %}active{% endif %}">Mine</a>
+      </div>
+    </div>
+
+    <hr />
+
+    <!-- Posts list -->
+    {% paginate space.ideas by 20 %}
+    <ul id="post-list">
+
+      {% for idea in pagination.collection %}
+      <li class="topic">
+        <article>
+          <h2><a href="{{ idea.permalink }}" title="link to {{ idea.title }}">{{ idea.title }}</a></h2>
+          <!-- Topic actions -->
+          <div class="actions">
+            
+            {% if idea.liked? %}
+            <span class="votes on"><span class="likecount">{{idea.likes}}</span> <small>votes</small></span>
+            {% else %}
+            <span class="votes" the_link="{{idea.like_link}}"><span class="likecount">{{idea.likes}}</span> <small>votes</small></span>
+            {% endif %}
+            
+            
+            <a href="{{ idea.permalink }}" class="responses">{{ idea.comments_count }} <small>replies</small></a>
+          </div>
+          <!-- Topic meta -->
+          <div class="meta">
+            <span class="date"><small>started {{ idea.created_at | date: "%b %d" }}</small></span>
+            <span class="author">started by <a href="{{ idea.user.profile_url }}" title="link to {{ idea.user.nickname }}'s profile on {{ idea.user.provider }}">{{ idea.user.nickname }}</a> 
+            <a href="{{ idea.user.profile_url }}" title="link to {{ idea.user.nickname }}'s profile on {{ idea.user.provider }}"><img src="{{idea.user.image_url}}" alt="{{ idea.user.nickname }}'s avatar from {{idea.user.provider}}" width="16" height="16" class="avatar" /></a></span>
+            <!--<span class="last-post">last reply by *comment.author* <img src="http://placehold.it/16x16" alt="*comment.author*'s avatar from *comment.author.provider*" class="avatar" /></span>-->
+          </div>
+        </article>
+      </li>
+      {% endfor %}
+
+    </ul>
+    
+    <!-- Pagination -->
+    {{ pagination | default_pagination }}
+    {% endpaginate %}
+
+{% else %}
+
+  <div id="empty">
+    There aren't any topics here yet<br /> <a href="{{ space.permalink }}/ideas/new" title="link to start a new topic">Click here to start a new topic</a>.
+  </div>
+
+{% endif %}

@@ -1,0 +1,24 @@
+  <!-- Actions -->
+  <div id="actions-bar">
+    <a href="{{ idea.permalink }}" title="back to {{ idea.title }}" class="back-link">&laquo; return to {{ idea.title }}</a>
+  </div>
+  
+  <hr />
+  
+  <!-- Add reply -->
+  <div id="edit-topic">
+  
+    <header>
+    <h1>Editing {{ idea.title }}...</h1>
+    </header>
+    
+    {% if current_user %}
+    <form id="edit-form" class="well" method="post" action="{{idea.permalink}}" enctype="multipart/form-data">
+    <input type="hidden" name="_method" value="put" />
+    <input id="idea_title" name="idea[title]" type="text" placeholder="Topic title" placeholder="{{theme.idea_context}} title" value="{{ idea.title }}" class="required">
+    <textarea id="idea_content" name="idea[content]" rows="3" placeholder="Topic content" class="required" class="input-xlarge" placeholder="Your topic here...">{{ idea.content }}</textarea>
+    <input type="submit" id="submit" value="Update topic" class="btn btn-primary btn-large" />
+    </form>
+    {% endif %}
+  
+  </div>
