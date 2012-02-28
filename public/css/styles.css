@@ -4307,6 +4307,9 @@ SIDEBAR & WIDGETS
 #sidebar .widget h4 {
   text-transform: uppercase;
 }
+#sidebar #add-new {
+  background: #e0f5fe;
+}
 #sidebar #popular-posts ul {
   float: left;
   position: relative;
