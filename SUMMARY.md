@@ -1,7 +1,7 @@
-<p class="large">Create and share ideas.</p>
+<p class="large">A forum / discussion board theme with voting.</p>
 
 Features include:
 
-* Create ideas
-* "Like" & comment in ideas
-* Social integration
+* Add new topics
+* Vote up the best topics in "popular view"
+* Easy login with Twitter & Facebook

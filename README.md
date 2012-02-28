@@ -1,5 +1,5 @@
-## Rusic - ideas theme
+## Rusic - forum theme
 
-Free theme to create and share ideas.
+A free forum / discussion board theme with voting.
 
 See http://hq.rusic.com/theming for documentation on creating Rusic themes.
