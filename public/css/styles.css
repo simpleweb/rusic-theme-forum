@@ -3719,6 +3719,7 @@ body {
   min-width: 240px\9;
 }
 #main-container {
+  *padding-bottom: 30px;
   background: #ffffff;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
@@ -3932,6 +3933,7 @@ POST / SINGLE VIEW
   clear: left;
   width: 598px;
   margin: 20px 20px 0 20px;
+  *padding-bottom: 15px;
   background: #e0f5fe;
   border: 1px solid #c7eefe;
 }
@@ -4135,6 +4137,7 @@ ADD NEW POST & EDIT POST PAGES
   clear: left;
   width: 598px;
   margin: 20px 20px 0 20px;
+  *padding-bottom: 10px;
   background: #e0f5fe;
   border: 1px solid #c7eefe;
 }
@@ -4154,8 +4157,9 @@ ADD NEW POST & EDIT POST PAGES
   float: left;
   position: relative;
   clear: left;
-  width: 560px;
+  width: 598px;
   margin: 0 20px 20px 20px;
+  padding: 0;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
@@ -4168,6 +4172,9 @@ ADD NEW POST & EDIT POST PAGES
 #add-new #edit-form #idea_title,
 #edit-topic #edit-form #idea_title {
   width: 540px;
+  margin-top: 20px;
+  margin-left: 20px;
+  *margin-left: 0;
   padding: 8px;
   font-size: 1.2em;
 }
@@ -4177,6 +4184,8 @@ ADD NEW POST & EDIT POST PAGES
 #edit-topic #edit-form #idea_content {
   width: 540px;
   height: 200px;
+  margin-left: 20px;
+  *margin-left: 0;
   padding: 8px;
 }
 #add-new #add-form .checkbox,
@@ -4185,6 +4194,7 @@ ADD NEW POST & EDIT POST PAGES
 #edit-topic #edit-form .checkbox {
   float: left;
   margin-top: 2px;
+  margin-left: 20px;
 }
 #add-new #add-form #submit,
 #edit-topic #add-form #submit,
@@ -4192,6 +4202,9 @@ ADD NEW POST & EDIT POST PAGES
 #edit-topic #edit-form #submit {
   float: right;
   position: relative;
+  margin-right: 20px;
+  *margin-right: 0;
+  margin-bottom: 20px;
 }
 #add-new #add-form label.error,
 #edit-topic #add-form label.error,
@@ -4320,7 +4333,6 @@ SIDEBAR & WIDGETS
   color: #9a9a9a;
 }
 #sidebar #popular-posts ul li .meta .author {
-  display: block;
   float: left;
   position: relative;
   clear: left;

@@ -45,6 +45,7 @@ body {
 }
 
 #main-container {
+	*padding-bottom: 30px;
 	background: @white;
 	.border-radius(2px);
 	.box-shadow(0 0 0px 3px rgba(255,255,255,.15));
@@ -241,6 +242,7 @@ POST / SINGLE VIEW
 		clear: left;
 		width: 598px;
 		margin: 20px 20px 0 20px;
+		*padding-bottom: 15px;
 		background: lighten(@blue, 50%);
 		border: 1px solid lighten(@blue, 45%);
 		
@@ -457,6 +459,7 @@ ADD NEW POST & EDIT POST PAGES
 		clear: left;
 		width: 598px;
 		margin: 20px 20px 0 20px;
+		*padding-bottom: 10px;
 		background: lighten(@blue, 50%);
 		border: 1px solid lighten(@blue, 45%);
 		
@@ -476,13 +479,17 @@ ADD NEW POST & EDIT POST PAGES
 		float: left;
 		position: relative;
 		clear: left;
-		width: 560px;
+		width: 598px;
 		margin: 0 20px 20px 20px;
+		padding: 0;
 		.border-radius(0);
 		.box-shadow(none);
 		
 		#idea_title {
 			width: 540px;
+			margin-top: 20px;
+			margin-left: 20px;
+			*margin-left: 0;
 			padding: 8px;
 			font-size: 1.2em;
 		}
@@ -490,17 +497,23 @@ ADD NEW POST & EDIT POST PAGES
 		#idea_content {
 			width: 540px;
 			height: 200px;
+			margin-left: 20px;
+			*margin-left: 0;
 			padding: 8px;
 		}
 		
 		.checkbox {
 			float: left;
 			margin-top: 2px;
+			margin-left: 20px;
 		}
 		
 		#submit {
 			float: right;
 			position: relative;
+			margin-right: 20px;
+			*margin-right: 0;
+			margin-bottom: 20px;
 		}
 		
 		label.error { 
@@ -624,7 +637,6 @@ SIDEBAR & WIDGETS
 					}
 					
 					.author {
-						display: block;
 						float: left;
 						position: relative;
 						clear: left;
