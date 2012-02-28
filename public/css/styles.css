@@ -3735,6 +3735,16 @@ footer {
   margin: 30px 0;
   color: #d8dde1;
 }
+footer a {
+  color: #d8dde1;
+  border-bottom: 1px dotted #d8dde1;
+}
+footer a:hover {
+  color: #f0f1f4;
+}
+footer .powered-by {
+  margin-top: 5px;
+}
 /* Typography */
 h1,
 h2,

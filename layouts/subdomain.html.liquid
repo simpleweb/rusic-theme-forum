@@ -122,7 +122,7 @@
         <!-- Main container -->
         <div id="main-container" class="span11">
 
-        {{ yield }}
+          {{ yield }}
         
         </div>
         
@@ -177,10 +177,6 @@
               {% endfor %}
             </ul>
           </div>
-          
-          <div id="rss-link" class="widget">
-            <a href="{{ space.permalink }}.atom" title="link to RSS feed for {{ space.title }}" class="rss-link">RSS feed for {{ space.title }}</a>
-          </div>
 
         </div>
 
@@ -189,7 +185,8 @@
       <hr />
       
       <footer class="footer">
-          <p>{{ space.title }} is powered by Rusic</p>
+          <a href="{{ space.permalink }}.atom" title="link to RSS feed for {{ space.title }}" class="rss-link">RSS feed for {{ space.title }}</a>
+          <p class="powered-by">{{ space.title }} is powered by <a href="http://rusic.com" title="link to Rusic">Rusic</a></p>
       </footer>
 
     </div> <!-- end wrapper -->
