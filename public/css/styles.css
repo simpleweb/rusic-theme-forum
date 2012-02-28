@@ -3719,6 +3719,7 @@ body {
   min-width: 240px\9;
 }
 #main-container {
+  min-height: 590px;
   *padding-bottom: 30px;
   background: #ffffff;
   -webkit-border-radius: 2px;
