@@ -156,9 +156,9 @@
           <div id="space-share" class="widget">
             <h4>Share this {% if idea %}topic{% else %}space{% endif %}</h4>
             {% if idea %}
-            <div id="shareme" data-url="{{ idea.permalink }}" data-text="{{ idea.content }} - {{ idea.permalink }}"></div>
+            <div id="shareme" data-text="{{ idea.content }} -"></div>
             {% else %}
-            <div id="shareme" data-url="{{ space.permalink }}" data-text="{{ space.summary }} - {{ space.permalink }}"></div>
+            <div id="shareme" data-text="{{ space.summary }} -"></div>
             {% endif %}
           </div>
 
