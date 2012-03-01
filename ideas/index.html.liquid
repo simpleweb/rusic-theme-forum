@@ -63,7 +63,7 @@
       {% else %}
       
         <div id="empty">
-          There aren't any topics here yet<br /> <a href="{{ space.permalink }}/ideas/new" title="link to start a new topic">Click here to start a new topic</a>.
+          There aren't any topics here yet.<br /> {% if current_user %}<a href="{{ space.permalink }}/ideas/new" title="link to start a new topic">Click here to start a new topic.</a>{% else %}Login with Twitter or Facebook to add a new topic.{% endif %}
         </div>
       
       {% endif %}
