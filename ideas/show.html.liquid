@@ -73,7 +73,19 @@
                 <textarea class="input-xlarge required" id="comment_body" name="comment[body]" rows="3" placeholder="Your reply here..."></textarea>
                 <label class="checkbox">
                   <input class="checkbox" type="checkbox" id="comment_should_post_to_social" name="comment[should_post_to_social]" value="1" checked="checked" /> share this reply to {{current_user.provider}}?
-                </label>
+                </label><br/><br/><br/>
+                {% assign subscription = idea.subscription %}
+                {% if subscription %}
+                  {% if subscription.active? %}
+                    <p>You are already subscribed to email notifications for this thread</p>
+                  {% else %}
+                    <p>You have unsubscribed to email notifications for this thread</p>
+                  {% endif %}
+                {% else %}
+                  <label class="checkbox">
+                    <input type="checkbox" name="comment[subscribe_to_notifications]"/ > subscribe to notifications for this thread?
+                  </label>
+                {% endif %}
                 <input type="submit" id="submit" name="submit" value="Add reply" class="btn btn-primary btn-large" />
               </form>
             </div>

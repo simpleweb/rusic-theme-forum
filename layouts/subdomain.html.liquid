@@ -1,5 +1,5 @@
 {% if env == "development" %}
-  {% assign asset_url="http://rusic-forum-assets" %}
+  {% assign asset_url="http://127.0.0.1:8080/rusic-theme-forum/public" %}
 {% else %}
   {% assign asset_url="http://rusic-forum-theme.s3.amazonaws.com" %}
 {% endif %}
@@ -191,6 +191,18 @@
 
     </div> <!-- end wrapper -->
 
+    {% if params.login == 'success' and current_participant and current_participant.missing_email_address? %}
+      <div class="modal-cover" id="emailCaptureModalCover">
+      <div class="modal" id="emailCaptureModal">
+        <h3>Please enter your email address:</h3>
+        <br/>
+        <form action="/participant" method="post">
+          <input type="text" name="participant[email_address]" placeholder="you@example.com"/>
+          <input type="submit" value="Submit" class="btn"/>
+        </form>
+      </div>
+    {% endif %}
+    
     <!-- Javascripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="{{ asset_url }}/js/bootstrap-transition.js"></script>
