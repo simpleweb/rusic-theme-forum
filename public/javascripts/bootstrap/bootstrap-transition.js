@@ -35,11 +35,11 @@
         end: (function () {
           var transitionEnd = "TransitionEnd"
           if ( $.browser.webkit ) {
-          	transitionEnd = "webkitTransitionEnd"
+            transitionEnd = "webkitTransitionEnd"
           } else if ( $.browser.mozilla ) {
-          	transitionEnd = "transitionend"
+            transitionEnd = "transitionend"
           } else if ( $.browser.opera ) {
-          	transitionEnd = "oTransitionEnd"
+            transitionEnd = "oTransitionEnd"
           }
           return transitionEnd
         }())

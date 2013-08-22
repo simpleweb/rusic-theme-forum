@@ -22,7 +22,7 @@
   "use strict"
 
   var Collapse = function ( element, options ) {
-  	this.$element = $(element)
+    this.$element = $(element)
     this.options = $.extend({}, $.fn.collapse.defaults, options)
 
     if (this.options["parent"]) {
@@ -91,11 +91,11 @@
       $.support.transition && this.$element.hasClass('collapse') ?
         this.$element.one($.support.transition.end, complete) :
         complete()
-  	}
+    }
 
   , toggle: function () {
       this[this.$element.hasClass('in') ? 'hide' : 'show']()
-  	}
+    }
 
   }
 
