@@ -1,0 +1,842 @@
+@import "bootstrap/bootstrap.less";
+
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans);
+
+body {
+  padding-top: 70px;
+  background: url(../img/background.png) repeat fixed #222222;
+  line-height: 1.5em;
+  font-family: 'Droid Sans';
+}
+
+/* Topbar */
+.navbar-inner {
+  background: @grayDark;
+  boder-bottom: 1px solid @black;
+  .box-shadow(0 1px 1px @black);
+
+  .avatar {
+    float: left;
+    position: relative;
+    margin: 0 8px 0 0;
+    .border-radius(2px);
+  }
+
+  .dropdown {
+    min-width: 240px\9;
+  }
+
+}
+
+#main-container {
+  min-height: 590px;
+  *padding-bottom: 30px;
+  background: @white;
+  .border-radius(2px);
+  .box-shadow(0 0 0px 3px rgba(255,255,255,.15));
+}
+
+/* Footer */
+footer {
+  float: left;
+  position: relative;
+  margin: 30px 0;
+  color: @grayLight;
+
+  a {
+    color: @grayLight;
+    border-bottom: 1px dotted @grayLight;
+
+    &:hover {
+      color: @grayLighter;
+    }
+
+  }
+
+  .powered-by {
+    margin-top: 5px;
+  }
+
+}
+
+/* Typography */
+h1, h2, h3, h4, h5 {
+  font-weight: normal;
+  color: darken(@blue, 8%);
+  text-shadow: 0 1px 0 #FFFFFF;
+}
+
+h1 {
+  font-size: 1.6em;
+}
+
+h4 {
+  margin-bottom: 10px;
+}
+
+p {
+  margin-bottom: 1.8em;
+  &:last-child { margin-bottom: 0; }
+}
+
+a {
+
+  &:hover {
+    text-decoration: none;
+  }
+
+}
+
+/* Overrides & miscellaneous global styles */
+.debug { background-color: red; }
+hr { display: none; }
+.add-post { width: 210px; &.disabled { background: lighten(@gray, 30%); } }
+.alert { margin-left: 18px; }
+#empty { float: left; position: relative; clear: left; width: 600px; margin: 20px; font-size: 2em; color: @grayLight; text-align: center; line-height: 1.4em; }
+#pagination { float: left; position: relative; clear: left; margin: 0 20px 20px 20px; }
+.logged-out #post-list .votes:hover { background: @grayLighter !important; cursor: default !important; }
+
+
+/*******************************
+INDEX / POST LIST
+*******************************/
+
+#post-list {
+  float: left;
+  position: relative;
+  width: 600px;
+  margin: 10px 20px 20px 20px;
+  padding: 0;
+  background: @white;
+  list-style-type: none;
+
+  .topic {
+    float: left;
+    position: relative;
+    clear: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px 0 14px 0;
+    border-bottom: 1px solid @grayLighter;
+
+    &:nth-child(even) {
+      background: lighten(@grayLighter, 4%);
+    }
+
+    article {
+      float: left;
+      position: relative;
+      width: 100%;
+    }
+
+    h2 {
+      float: left;
+      position: relative;
+      width: 430px;
+      margin: 0 0 8px 10px;
+      line-height: 1.2em;
+    }
+
+    .meta {
+      float: left;
+      position: relative;
+      clear: left;
+      *width: 440px;
+      margin: 0 10px;
+      color: lighten(@gray, 40%);
+
+      a {
+        color: lighten(@gray, 40%);
+        border-bottom: 1px dotted lighten(@gray, 48%);
+
+        &:hover {
+          color: @linkColor;
+        }
+
+      }
+
+      .date, .author, .last-post {
+        float: left;
+        position: relative;
+        margin: 0 12px 0 0;
+        font-size: .9em;
+      }
+
+      .author, .last-post {
+        padding-right: 22px;
+      }
+
+      .avatar {
+        position: absolute;
+        top: 0;
+        right: 0;
+        .border-radius(2px);
+      }
+
+    }
+
+    .actions {
+      float: right;
+      position: relative;
+      margin: 0 10px;
+
+      a, .votes {
+        float: left;
+        position: relative;
+        display: block;
+        width: 45px;
+        height: 45px;
+        padding: 10px 8px 0 8px;
+        background: @grayLighter;
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.1em;
+        color: @linkColor;
+
+        &:hover {
+          background: @yellow;
+          cursor: pointer;
+        }
+
+        &.on {
+          background: lighten(@yellow, 4%);
+          color: lighten(@gray, 40%);
+        }
+
+        &:first-child {
+          .border-radius(3px 0 0 3px);
+        }
+
+        &:last-child {
+          .border-radius(0 3px 3px 0);
+        }
+
+        &:nth-child(even) {
+          border-left: 1px dotted darken(@grayLighter, 5%);
+        }
+
+        small {
+          display: block;
+          font-size: .85em;
+          font-weight: normal;
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+/*******************************
+POST / SINGLE VIEW
+*******************************/
+
+#single-post {
+
+  /* Header */
+  header {
+    float: left;
+    position: relative;
+    clear: left;
+    width: 598px;
+    margin: 20px 20px 0 20px;
+    *padding-bottom: 15px;
+    background: lighten(@blue, 50%);
+    border: 1px solid lighten(@blue, 45%);
+
+    h1 {
+      display: block;
+      float: left;
+      position: relative;
+      width: 320px;
+      margin: 12px 20px;
+      padding: 0;
+      line-height: 1.3em;
+      text-transform: uppercase;
+    }
+
+    .add-btn {
+      float: right;
+      position: relative;
+      margin-right: 20px;
+    }
+
+    .actions {
+      float: right;
+      position: relative;
+      margin: 11px 12px 0 0;
+
+      .btn {
+        float: left;
+        position: relative;
+        margin: 0 0 0 5px;
+        font-size: .9em;
+        text-align: right;
+      }
+
+    }
+
+  }
+
+  /* No responses */
+  #empty {
+    width: 560px;
+    margin-bottom: 0;
+    font-size: 1.7em;
+  }
+
+  /* Post & responses list */
+  #topic {
+    float: left;
+    position: relative;
+    width: 600px;
+    margin: 0 20px 20px 20px;
+    padding: 0;
+    background: @white;
+    list-style-type: none;
+
+    .response {
+      float: left;
+      position: relative;
+      clear: left;
+      width: 596px;
+      margin: 0;
+      border-right: 2px solid @grayLighter;
+      border-bottom: 2px solid @grayLighter;
+      border-left: 2px solid @grayLighter;
+
+      article {
+        float: left;
+        position: relative;
+        width: 100%;
+      }
+
+      /* Response meta */
+      .meta {
+        width: 160px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        padding: 20px 10px;
+        border-left: 1px solid @grayLighter;
+        text-align: center;
+
+        .avatar {
+          margin-bottom: 5px;
+          border: 3px solid @white;
+          .border-radius(3px);
+          .box-shadow(0 1px 1px @grayLight);
+        }
+
+        .author, .date {
+          float: left;
+          position: relative;
+          clear: left;
+          width: 100%;
+        }
+
+        .date {
+          color: lighten(@gray, 30%);
+          font-size: .8em;
+        }
+
+      }
+
+      /* Response content */
+      .content {
+        float: left;
+        position: relative;
+        width: 379px;
+        min-height: 130px;
+        margin: 20px;
+        color: @gray;
+      }
+
+      /* Main topic style */
+      &.first {
+        background: lighten(@yellow, 7%);
+        border-right: 2px solid @yellow;
+        border-bottom: 2px solid @yellow;
+        border-left: 2px solid @yellow;
+
+        .content {
+          width: 373px;
+        }
+
+        .meta {
+          border-left: 1px solid @yellow;
+        }
+
+      }
+
+      /* Alternating style */
+      &:nth-child(even) {
+        background: lighten(@grayLighter, 4%);
+      }
+
+    }
+
+  }
+
+
+  #add-reply {
+    float: left;
+    position: relative;
+    clear: left;
+    width: 600px;
+    margin: 0 20px 10px 20px;
+
+    .form-header {
+      float: left;
+      position: relative;
+      clear: left;
+      width: 568px;
+      margin: 0;
+      padding: 10px 15px;
+      background: lighten(@blue, 50%);
+      border: 1px solid lighten(@blue, 45%);
+      border-bottom: none;
+
+      h3 {
+        font-size: 1.4em;
+        text-transform: uppercase;
+      }
+
+    }
+
+    .well {
+      float: left;
+      position: relative;
+    }
+
+    form {
+      .border-radius(0);
+      .box-shadow(none);
+
+      label.error {
+        .alert;
+        .alert-error;
+        width: 507px;
+        margin: -10px 0 10px 0;
+        .border-radius(0 0 4px 4px);
+      }
+
+    }
+
+    #comment_body {
+      width: 540px;
+      height: 120px;
+      padding: 8px;
+    }
+
+    .checkbox {
+      float: left;
+      position: relative;
+    }
+
+    #submit {
+      float: right;
+      position: relative;
+    }
+
+  }
+
+}
+
+
+/*******************************
+ADD NEW POST & EDIT POST PAGES
+*******************************/
+
+#add-new, #edit-topic {
+
+  header {
+    float: left;
+    position: relative;
+    clear: left;
+    width: 598px;
+    margin: 20px 20px 0 20px;
+    *padding-bottom: 10px;
+    background: lighten(@blue, 50%);
+    border: 1px solid lighten(@blue, 45%);
+
+    h1 {
+      display: block;
+      float: left;
+      position: relative;
+      margin: 12px 20px;
+      padding: 0;
+      text-transform: uppercase;
+    }
+
+  }
+
+  /* Add new & edit forms */
+  #add-form, #edit-form {
+    float: left;
+    position: relative;
+    clear: left;
+    width: 598px;
+    margin: 0 20px 20px 20px;
+    padding: 0;
+    .border-radius(0);
+    .box-shadow(none);
+
+    #idea_title {
+      width: 540px;
+      margin-top: 20px;
+      margin-left: 20px;
+      *margin-left: 0;
+      padding: 8px;
+      font-size: 1.2em;
+    }
+
+    #idea_content {
+      width: 540px;
+      height: 200px;
+      margin-left: 20px;
+      *margin-left: 0;
+      padding: 8px;
+    }
+
+    .checkbox {
+      float: left;
+      margin-top: 2px;
+      margin-left: 20px;
+    }
+
+    #submit {
+      float: right;
+      position: relative;
+      margin-right: 20px;
+      *margin-right: 0;
+      margin-bottom: 20px;
+    }
+
+    label.error {
+      .alert;
+      .alert-error;
+      width: 507px;
+      margin: -10px 0 10px 20px;
+      .border-radius(0 0 4px 4px);
+    }
+
+  }
+
+}
+
+
+/*******************************
+ACTIONS MENU
+*******************************/
+
+#actions-bar {
+  float: left;
+  position: relative;
+  width: 100%;
+  background: @grayLighter;
+  border-bottom: 1px solid @grayLight;
+  .border-radius(2px 2px 0 0);
+
+  h1 {
+    display: block;
+    float: left;
+    position: relative;
+    margin: 12px 20px;
+    padding: 0;
+    text-transform: uppercase;
+  }
+
+  /* Filter links */
+  #filter-options {
+    float: right;
+    position: relative;
+    margin: 16px 20px;
+  }
+
+  .back-link {
+    display: block;
+    margin: 10px 20px;
+  }
+
+}
+
+/*******************************
+SIDEBAR & WIDGETS
+*******************************/
+
+#sidebar {
+  background: @grayLighter;
+  .border-radius(2px);
+  .box-shadow(0 0 0px 3px rgba(255,255,255,.15));
+
+  /* Default widget style */
+  .widget {
+    float: left;
+    position: relative;
+    clear: left;
+    width: 240px;
+    padding: 20px;
+    border-bottom: 1px solid @grayLight;
+    color: @gray;
+
+    &:last-child {
+      border-bottom: none;
+      marginb-bottom: 3px;
+    }
+
+    h4 {
+      text-transform: uppercase;
+    }
+
+  }
+
+  #add-new {
+    background: lighten(@blue, 50%);
+    i { margin-top: 2px; margin-right: 4px; }
+  }
+
+  /* Popular posts */
+  #popular-posts {
+
+    ul {
+      float: left;
+      position: relative;
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+
+      li {
+        float: left;
+        position: relative;
+        width: 100%;
+        margin: 0 0 8px 0;
+        padding: 0 0 8px 0;
+        border-bottom: 1px dotted @grayLight;
+
+        .avatar {
+          float: left;
+          position: relative;
+          margin: 0 10px 0 0;
+          .border-radius(2px);
+        }
+
+        h5 {
+          display: block;
+          float: left;
+          position: relative;
+          width: 100%;
+        }
+
+        .meta {
+          float: left;
+          position: relative;
+          width: 195px;
+
+          .author, .responses {
+            font-size: .85em;
+            color: lighten(@gray, 27%);
+          }
+
+          .author {
+            float: left;
+            position: relative;
+            clear: left;
+            margin-right: 5px;
+          }
+
+          .responses {
+            float: left;
+            position: relative;
+          }
+
+        }
+
+      }
+    }
+  }
+
+}
+
+/*******************************
+SHARE BUTTONS
+*******************************/
+
+.sharrre .button{
+  float:left;
+  width:60px;
+}
+
+.ideas-index {
+
+  #actions-bar {
+  float: left;
+  position: relative;
+  width: 100%;
+  background: lighten(@blue, 50%);
+  border-bottom: 1px solid lighten(@blue, 45%);
+  .border-radius(2px 2px 0 0);
+  }
+
+}
+
+
+/*******************************
+CUSTOM PAGINATION
+*******************************/
+
+.pagination {
+  float: left;
+  position: relative;
+  clear: left;
+  width: 590px;
+  margin: 0 20px 20px 20px;
+
+  .prev_page, .next_page, .current, a, .gap {
+    float: left;
+    position: relative;
+    padding: 0 14px;
+    line-height: 34px;
+    border: 1px solid @grayLight;
+    border-left: none;
+    .buttonBackground(@white, darken(@white, 10%));
+
+    &:hover {
+      background: lighten(@blue, 40%);
+      display: cursor;
+    }
+
+  }
+
+  .prev_page {
+    border-left: 1px solid @grayLight;
+    .border-radius(4px 0 0 4px);
+  }
+
+  .next_page {
+    border-left: none;
+    .border-radius(0 4px 4px 0);
+  }
+
+  .current {
+    background: lighten(@blue, 48%);
+    color: lighten(@gray, 30%);
+  }
+
+  .disabled {
+    color: lighten(@gray, 50%);
+    .buttonBackground(@white, darken(@white, 1%));
+    border-color: lighten(@grayLight, 6%);
+
+    &:hover {
+      .buttonBackground(@white, darken(@white, 2%));
+      border-color: lighten(@grayLight, 5%);
+    }
+
+  }
+
+}
+
+/*******************************
+LOGIN BUTTONS
+*******************************/
+
+/* Login prompt */
+.login-prompt {
+  float: left;
+  position: relative;
+  width: 220px;
+  margin: 8px 0 0 0;
+  padding: 15px 10px;
+  background: @gray;
+  .border-radius(4px);
+  .box-shadow(0 1px 2px lighten(@gray, 20%));
+  color: @grayLight;
+
+  span {
+    float: left;
+    position: relative;
+    margin-bottom: 5px;
+  }
+
+  .pointer {
+    display: block;
+    position: absolute;
+    top: -14px;
+    left: 106px;
+    width: 24px;
+    height: 15px;
+    background: url(../img/pointer.png) no-repeat;
+  }
+
+  .facebook {
+    clear: left;
+  }
+
+}
+
+/* Login block */
+.login-block {
+  width: 560px;
+  .border-radius(0);
+  .box-shadow(none);
+}
+
+/* Auth list */
+.auth {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+
+  li {
+    float: left;
+    position: relative;
+    margin: 0 5px 0 0;
+  }
+
+  .twitter a, .facebook a {
+    .btn;
+    margin: 5px 0 0 0;
+  }
+
+  i {
+    display: block;
+    width: 16px;
+    height: 16px;
+    float: left;
+    position: relative;
+    margin: 0 5px 0 -5px;
+  }
+
+  .twitter i {
+    background: url(../img/icon-twitter.png) no-repeat;
+  }
+
+  .facebook i {
+    background: url(../img/icon-facebook.png) no-repeat;
+  }
+
+}
+
+#emailCaptureModal {
+  width: 340px;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.7);
+  position: fixed;
+  top: 200px;
+  left: 50%;
+  margin: 0 0 0 -200px;
+  padding: 30px 30px 0 30px;
+  text-align: center;
+}
+
+.modal-cover {
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background: rgba(0,0,0,0.7);
+}
+
