@@ -1,0 +1,44 @@
+<div id="actions-bar">
+  <h1>Topics tagged with &ldquo;{{tag}}&rdquo;</h1>
+</div>
+
+<hr />
+
+{% if tag_count == 0 %}
+  <p>No topics tagged with <b>{{tag}}</b> </p>
+{% else %}
+  {% paginate ideas by 10 %}
+    <ul id="post-list">
+      {% for idea in pagination.collection %}
+        <li class="topic">
+          <article>
+            <h2><a href="{{ idea.permalink }}" title="link to {{ idea.title }}">{{ idea.title }}</a></h2>
+            <!-- Topic actions -->
+            <div class="actions">
+
+              {% if idea.liked? %}
+              <span class="votes on"><span class="likecount">{{idea.likes}}</span> <small>votes</small></span>
+              {% else %}
+              <span class="votes action-like" data-url="{{idea.like_link}}"><span class="likecount">{{idea.likes}}</span> <small>votes</small></span>
+              {% endif %}
+
+              <a href="{{ idea.permalink }}" class="responses">{{ idea.comments_count }} <small>replies</small></a>
+            </div>
+            <!-- Topic meta -->
+            <div class="meta">
+              <span class="date"><small>started on {{ idea.created_at | date: "%b %d" }}</small></span>
+              <span class="author">by <a href="{{ idea.user.profile_url }}" title="link to {{ idea.user.nickname }}'s profile on {{ idea.user.provider }}">{{ idea.user.nickname }}</a>
+              <a href="{{ idea.user.profile_url }}" title="link to {{ idea.user.nickname }}'s profile on {{ idea.user.provider }}"><img src="{{idea.user.image_url}}" alt="{{ idea.user.nickname }}'s avatar from {{idea.user.provider}}" width="16" height="16" class="avatar" /></a></span>
+              <!--<span class="last-post">last reply by {{ first_comment.user.nickname }} <img src="http://placehold.it/16x16" alt="*comment.author*'s avatar from *comment.author.provider*" class="avatar" /></span>-->
+              {% for tag in idea.tag_list %}
+                <a href="{{space.permalink}}/tagged/{{tag}}" class="label" title="tagged with &ldquo;{{tag}}&rdquo;">{{tag}}</a>
+              {% endfor %}
+            </div>
+          </article>
+        </li>
+      {% endfor %}
+    </ul>
+
+    {{ pagination | default_pagination }}
+  {% endpaginate %}
+{% endif %}

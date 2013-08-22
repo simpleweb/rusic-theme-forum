@@ -9,7 +9,7 @@
 
     <!-- Metadata -->
     <meta charset="utf-8">
-    
+
     <title>
         {% if idea %}
           {{idea.title}} &middot; {{space.title}}
@@ -17,11 +17,11 @@
           {{space.title}}
         {% endif %}
     </title>
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    
+
     {% if idea %}
     <meta property="og:title" content="{{ idea.title }}"/>
     <meta property="og:type" content="article"/>
@@ -45,7 +45,7 @@
     <!--[if lt IE 9]>
       <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    
+
     <!-- Scripts -->
     {{ content_for_header }}
 
@@ -130,9 +130,9 @@
         <div id="main-container" class="span11">
 
           {{ yield }}
-        
+
         </div>
-        
+
         <hr />
 
         <!-- Sidebar -->
@@ -155,7 +155,7 @@
             </div>
           </div>
           {% endif %}
-          
+
           <div id="space-description" class="widget">
             {{ space.summary | markdown }}
           </div>
@@ -190,7 +190,7 @@
       </div> <!-- /row -->
 
       <hr />
-      
+
       <footer class="footer">
           <a href="{{ space.permalink }}.atom" title="link to RSS feed for {{ space.title }}" class="rss-link">RSS feed for {{ space.title }}</a>
           <p class="powered-by">{{ space.title }} is powered by <a href="http://rusic.com" title="link to Rusic">Rusic</a></p>
