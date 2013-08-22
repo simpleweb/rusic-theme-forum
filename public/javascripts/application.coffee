@@ -1,3 +1,5 @@
+# Compile this file to public/javascripts/application.js
+
 $ ->
   $('.action-like').click ->
     $link = $(this);

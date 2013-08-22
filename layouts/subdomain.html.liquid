@@ -1,5 +1,5 @@
 {% if env == "development" %}
-  {% assign asset_url="http://127.0.0.1:8080/rusic-theme-forum/public" %}
+  {% assign asset_url="http://localhost:8080" %}
 {% else %}
   {% assign asset_url="http://rusic-forum-theme.s3.amazonaws.com" %}
 {% endif %}
@@ -202,24 +202,10 @@
         </form>
       </div>
     {% endif %}
-    
+
     <!-- Javascripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-transition.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-alert.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-modal.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-dropdown.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-scrollspy.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-tab.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-tooltip.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-popover.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-button.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-collapse.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-carousel.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-typeahead.js"></script>
-    <script src="{{ asset_url }}/js/jquery.validate.min.js"></script>
-    <script src="{{ asset_url }}/js/jquery.sharrre-1.2.0.min.js"></script>
-    <script src="{{ asset_url }}/js/scripts.js"></script>
-
+    <script src="{{asset_url}}/javascripts/vendor.js"></script>
+    <script src="{{asset_url}}/javascripts/application.js"></script>
   </body>
 </html>
