@@ -2,12 +2,12 @@ $(document).ready(function(){
 
 	 // AJAXIFY LIKE BUTTONS
 	  $('.action-like').click(function(){
-	
+
 	  var button = this;
-	
+
 	  $(this).addClass('disabled');
 	  $(this).addClass('on');
-	
+
 	  $.post($(this).attr('the_link'), function(data) {
 		if(data.valid){
 		  $(button).find(".likecount").html(''+data.likes_count+'');
@@ -16,10 +16,10 @@ $(document).ready(function(){
 		}
 	  }, 'json');
 	});
-	
+
 	// FORM VALIDATION
 	$("#add-form, #edit-form, #add-reply form").validate();
-	
+
 	// SHARE BUTTONS
 	$('#shareme').sharrre({
 	  share: {
