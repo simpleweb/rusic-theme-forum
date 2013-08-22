@@ -101,8 +101,6 @@
       </div>
     </div>
 
-    <hr />
-
     <!-- Wrapper -->
     <div class="container" class="row">
       <div class="row">
@@ -132,8 +130,6 @@
           {{ yield }}
 
         </div>
-
-        <hr />
 
         <!-- Sidebar -->
         <div id="sidebar" class="span5">
@@ -178,7 +174,7 @@
                 <div class="meta">
                   <h5><a href="{{ idea.permalink }}" title="link to {{ idea.title }}">{{ idea.title }}</a></h5>
                   <span class="author">by {{ idea.user.nickname }}</span>
-                  <span class="responses">{{ idea.comments_count }} replies</span>
+                  <span class="responses">{{ idea.comments_count | pluralize: 'reply' }}</span>
                 </div>
               </li>
               {% endfor %}

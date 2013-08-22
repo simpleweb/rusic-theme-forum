@@ -1,7 +1,7 @@
 <div id="single-post">
 
             <!-- Actions -->
-            <div id="actions-bar">
+            <div class="actions-bar">
               <a href="{{ space.permalink }}" title="return to {{ space.title }} home" class="back-link">&laquo; return to {{ space.title }} home</a>
             </div>
 
@@ -27,7 +27,7 @@
               <!-- Main post -->
               <li class="first response">
                 <article>
-                  <div class="meta">
+                  <div class="single-post-meta">
                     <a href="{{ idea.user.profile_url }}" title="link to {{ idea.user.nickname }}'s profile on {{ idea.user.provider }}"><img src="{{idea.user.image_url}}" alt="*idea.user*'s avatar from Twitter" width="80" class="avatar" /></a>
                     <a href="{{ idea.user.profile_url }}" title="link to {{ idea.user.nickname }}'s profile on {{ idea.user.provider }}" class="author">{{ idea.user.nickname }}</a>
                     <span class="date">{{ idea.created_at | date: "%B %d %Y" }} at {{ idea.created_at | date: "%I:%M%p" }}</span>
@@ -43,7 +43,7 @@
               {% for comment in idea.comments reversed %}
               <li class="response">
                 <article>
-                  <div class="meta">
+                  <div class="single-post-meta">
                     <a href="{{ comment.user.profile_url }}" title="link to {{ comment.user.nickname }}'s profile on {{ comment.user.provider }}"><img src="{{ comment.user.image_url }}" alt="*idea.user*'s avatar from Twitter" width="80" class="avatar" /></a>
                     <a href="{{ comment.user.profile_url }}" title="link to {{ comment.user.nickname }}'s profile on {{ comment.user.provider }}" class="author">{{ comment.user.nickname }}</a>
                     <span class="date">{{ comment.created_at | date: "%B %d %Y" }} at {{ comment.created_at | date: "%I:%M%p" }}</span>

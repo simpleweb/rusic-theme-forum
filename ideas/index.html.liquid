@@ -1,19 +1,17 @@
       {% if space.ideas != empty %}
 
           <!-- Actions -->
-          <div id="actions-bar">
+          <div class="actions-bar clearfix">
 
             {% if filter == "own" %}
-            <h1>Showing my topics</h1>
+              <h1 class="pull-left">Showing my topics</h1>
+            {% elsif sort == "like" %}
+              <h1 class="pull-left">Topics with most votes</h1>
             {% else %}
-            {% if sort == "like" %}
-            <h1>Topics with most votes</h1>
-            {% else %}
-            <h1>Latest topics</h1>
-            {% endif %}
+              <h1 class="pull-left">Latest topics</h1>
             {% endif %}
 
-            <div id="filter-options" class="btn-group">
+            <div class="filter-options btn-group pull-right">
               <a href="{{space.permalink}}" title="Show latest {{ theme.ideas_context }} first" class="btn {% if filter == "own" %}{% else %}{% if sort == "like" %}{% else %}active{% endif %}{% endif %}"><i class="icon-asterisk"></i> Newest first</a>
               <a href="{{ space.permalink }}?sort=like"title="show most popular {{ theme.ideas_context }} first" class="btn {% if sort == "like" %}active{% endif %}"><i class="icon-fire"></i> Most votes</a>
               {% if current_user %}<a href="{{ space.permalink }}?filter=own" title="show only my {{ theme.ideas_context }}" class="btn {% if filter == "own" %}active{% endif %}"><i class="icon-user"></i> Mine</a>{% endif %}
@@ -54,7 +52,7 @@
                     </a>
                   </span>
                   {% for tag in idea.tag_list %}
-                    <a href="{{space.permalink}}/tagged/{{tag}}" class="label" title="tagged with &ldquo;{{tag}}&rdquo;">{{tag}}</a>
+                    <a href="{{space.permalink}}/tagged/{{tag}}" class="label label--tag" title="tagged with &ldquo;{{tag}}&rdquo;">{{tag}}</a>
                   {% endfor %}
                 </div>
               </article>

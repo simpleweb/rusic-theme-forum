@@ -1,32 +1,36 @@
-  <!-- Actions -->
-  <div id="actions-bar">
-    <a href="{{ space.permalink }}" title="return to {{ space.title }} home" class="back-link">&laquo; return to {{ space.title }} home</a>
-  </div>
+<div class="actions-bar">
+  <a href="{{ space.permalink }}" title="return to {{ space.title }} home" class="back-link">
+    &laquo; return to {{ space.title }} home
+  </a>
+</div>
 
-  <hr />
+{% if current_user %}
 
-  <!-- Add reply -->
-  <div id="add-new">
+  {% if idea.errors != empty %}
+    <p>
+      {{idea.errors_as_sentence}}
+    </p>
+  {% endif %}
 
-    <header>
-    <h1>Add a new topic...</h1>
+  <form class="form form--island" method="post" action="{{space.permalink}}/ideas" enctype="multipart/form-data">
+    <header class="form__header">
+      <h1>Add a new topic...</h1>
     </header>
 
-    {% if current_user %}
-      <p>
-        {{idea.errors_as_sentence}}
-      </p>
+    <fieldset class="form__well">
 
-      <form id="add-form" class="well" method="post" action="{{space.permalink}}/ideas" enctype="multipart/form-data">
-        <input id="idea_title" name="idea[title]" value="{{idea.title}}" type="text" placeholder="Topic title" placeholder="{{theme.idea_context}} title" class="required">
+      <ul class="form-fields">
+        <li>
+          <input name="idea[title]" value="{{idea.title}}" type="text" placeholder="Topic title" placeholder="{{theme.idea_context}} title" class="text--larger required">
+        </li>
 
-        <textarea id="idea_content" name="idea[content]" value="{{idea.content}}" rows="3" placeholder="Topic content" class="required" class="input-xlarge" placeholder="Your idea here..."></textarea>
+        <li>
+          <textarea name="idea[content]" rows="3" placeholder="Topic content" class="required" class="input-xlarge" placeholder="Your idea here...">{{idea.content}}</textarea>
+        </li>
 
-        <p>
-          <b>Select relevant categories:</b>
-        </p>
+        <li>
+          <label class="checkbox-group">Select relevant categories:</label>
 
-        <p class="clearfix">
           <label class="checkbox">
             {{ idea | tag_checkbox: 'login' }} Login problems
           </label>
@@ -38,17 +42,18 @@
           <label class="checkbox">
             {{ idea | tag_checkbox: 'bug' }} Bugs and errors
           </label>
-        </p>
+        </li>
+      </ul>
 
-        <hr>
+      <hr />
 
-        <label class="checkbox">
+      <div class="actions">
+        <label class="checkbox pull-left">
           <input type="checkbox" id="social-share" name="idea[should_post_to_social]" value="1" checked="checked" />share this topic to {{ current_user.provider }}?
         </label>
 
-
-        <input type="submit" id="submit" value="Post topic" class="btn btn-primary btn-large" />
-      </form>
-    {% endif %}
-
-  </div>
+        <input type="submit" id="submit" value="Post topic" class="btn btn-primary btn-large pull-right" />
+      </div>
+    </fieldset>
+  </form>
+{% endif %}
