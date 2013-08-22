@@ -18,11 +18,9 @@ $("#add-form, #edit-form, #add-reply form").validate()
 
 $('#shareme').sharrre
   share:
-    googlePlus: true,
     facebook: true,
     twitter: true
   buttons:
-    googlePlus: { size: 'tall' }
     facebook: { layout: 'box_count' }
     twitter: { count: 'vertical' }
   enableHover: false
