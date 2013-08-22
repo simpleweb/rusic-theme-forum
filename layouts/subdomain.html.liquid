@@ -90,6 +90,13 @@
           </ul>
           {% endif %}
 
+          <form action="{{space.permalink}}/search" method="get" class="navbar-form pull-right">
+            <fieldset class="input">
+              <input type="text" name="query" value="{{search.query}}" placeholder="Search&hellip;" />
+
+              <button type="submit" class="btn">Search</button>
+            </fieldset>
+          </form>
         </div>
       </div>
     </div>
