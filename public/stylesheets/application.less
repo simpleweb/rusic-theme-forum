@@ -1,6 +1,7 @@
 // Compile this file into public/stylesheets/forum-theme.css
 
 @import "bootstrap/bootstrap.less";
+@import "objects/_form.less";
 @import url(http://fonts.googleapis.com/css?family=Droid+Sans);
 
 body {
@@ -35,6 +36,11 @@ body {
   background: @white;
   .border-radius(2px);
   .box-shadow(0 0 0px 3px rgba(255,255,255,.15));
+
+  &> p {
+    padding: 10px 30px;
+    margin: 0;
+  }
 }
 
 /* Footer */
@@ -110,122 +116,121 @@ INDEX / POST LIST
   padding: 0;
   background: @white;
   list-style-type: none;
+}
 
-  .topic {
+.topic {
+  float: left;
+  position: relative;
+  clear: left;
+  width: 100%;
+  margin: 0;
+  padding: 14px 0 14px 0;
+  border-bottom: 1px solid @grayLighter;
+
+  &:nth-child(even) {
+    background: lighten(@grayLighter, 4%);
+  }
+
+  article {
     float: left;
     position: relative;
-    clear: left;
     width: 100%;
-    margin: 0;
-    padding: 14px 0 14px 0;
-    border-bottom: 1px solid @grayLighter;
+  }
 
-    &:nth-child(even) {
-      background: lighten(@grayLighter, 4%);
-    }
+  h2 {
+    float: left;
+    position: relative;
+    width: 430px;
+    margin: 0 0 8px 10px;
+    line-height: 1.2em;
+  }
 
-    article {
+  .actions {
+    float: right;
+    position: relative;
+    margin: 0 10px;
+
+    a, .votes {
       float: left;
       position: relative;
-      width: 100%;
-    }
+      display: block;
+      width: 45px;
+      height: 45px;
+      padding: 10px 8px 0 8px;
+      background: @grayLighter;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.1em;
+      color: @linkColor;
 
-    h2 {
-      float: left;
-      position: relative;
-      width: 430px;
-      margin: 0 0 8px 10px;
-      line-height: 1.2em;
-    }
+      &:hover {
+        background: @yellow;
+        cursor: pointer;
+      }
 
-    .meta {
-      float: left;
-      position: relative;
-      clear: left;
-      *width: 440px;
-      margin: 0 10px;
-      color: lighten(@gray, 40%);
-
-      a {
+      &.on {
+        background: lighten(@yellow, 4%);
         color: lighten(@gray, 40%);
-        border-bottom: 1px dotted lighten(@gray, 48%);
-
-        &:hover {
-          color: @linkColor;
-        }
-
       }
 
-      .date, .author, .last-post {
-        float: left;
-        position: relative;
-        margin: 0 12px 0 0;
-        font-size: .9em;
+      &:first-child {
+        .border-radius(3px 0 0 3px);
       }
 
-      .author, .last-post {
-        padding-right: 22px;
+      &:last-child {
+        .border-radius(0 3px 3px 0);
       }
 
-      .avatar {
-        position: absolute;
-        top: 0;
-        right: 0;
-        .border-radius(2px);
+      &:nth-child(even) {
+        border-left: 1px dotted darken(@grayLighter, 5%);
       }
 
-    }
-
-    .actions {
-      float: right;
-      position: relative;
-      margin: 0 10px;
-
-      a, .votes {
-        float: left;
-        position: relative;
+      small {
         display: block;
-        width: 45px;
-        height: 45px;
-        padding: 10px 8px 0 8px;
-        background: @grayLighter;
-        text-align: center;
-        font-weight: bold;
-        font-size: 1.1em;
-        color: @linkColor;
-
-        &:hover {
-          background: @yellow;
-          cursor: pointer;
-        }
-
-        &.on {
-          background: lighten(@yellow, 4%);
-          color: lighten(@gray, 40%);
-        }
-
-        &:first-child {
-          .border-radius(3px 0 0 3px);
-        }
-
-        &:last-child {
-          .border-radius(0 3px 3px 0);
-        }
-
-        &:nth-child(even) {
-          border-left: 1px dotted darken(@grayLighter, 5%);
-        }
-
-        small {
-          display: block;
-          font-size: .85em;
-          font-weight: normal;
-        }
-
+        font-size: .85em;
+        font-weight: normal;
       }
 
     }
 
+  }
+
+}
+
+.meta {
+  float: left;
+  position: relative;
+  clear: left;
+  *width: 440px;
+  margin: 0 10px;
+  color: lighten(@gray, 40%);
+
+  a {
+    color: lighten(@gray, 40%);
+    border-bottom: 1px dotted lighten(@gray, 48%);
+
+    &:hover {
+      color: @linkColor;
+    }
+
+  }
+
+  .date, .author, .last-post {
+    float: left;
+    position: relative;
+    margin: 0 12px 0 0;
+    font-size: .9em;
+  }
+
+  .author, .last-post {
+    padding-right: 22px;
+  }
+
+  .avatar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    .border-radius(2px);
   }
 
 }
@@ -315,7 +320,7 @@ POST / SINGLE VIEW
       }
 
       /* Response meta */
-      .meta {
+      .single-post-meta {
         width: 160px;
         position: absolute;
         top: 0;
@@ -534,28 +539,15 @@ ADD NEW POST & EDIT POST PAGES
 ACTIONS MENU
 *******************************/
 
-#actions-bar {
-  float: left;
-  position: relative;
-  width: 100%;
+.actions-bar {
   background: @grayLighter;
   border-bottom: 1px solid @grayLight;
   .border-radius(2px 2px 0 0);
+  padding: 12px 20px;
 
   h1 {
-    display: block;
-    float: left;
-    position: relative;
-    margin: 12px 20px;
-    padding: 0;
+    margin: 0;
     text-transform: uppercase;
-  }
-
-  /* Filter links */
-  #filter-options {
-    float: right;
-    position: relative;
-    margin: 16px 20px;
   }
 
   .back-link {
@@ -634,8 +626,9 @@ SIDEBAR & WIDGETS
 
         .meta {
           float: left;
+          clear: none;
           position: relative;
-          width: 195px;
+          width: 175px;
 
           .author, .responses {
             font-size: .85em;
@@ -672,16 +665,10 @@ SHARE BUTTONS
 }
 
 .ideas-index {
-
-  #actions-bar {
-  float: left;
-  position: relative;
-  width: 100%;
-  background: lighten(@blue, 50%);
-  border-bottom: 1px solid lighten(@blue, 45%);
-  .border-radius(2px 2px 0 0);
+  .actions-bar {
+    background: lighten(@blue, 50%);
+    border-bottom: 1px solid lighten(@blue, 45%);
   }
-
 }
 
 
@@ -841,3 +828,31 @@ LOGIN BUTTONS
   background: rgba(0,0,0,0.7);
 }
 
+.meta {
+  .label--tag {
+    background-color: @grayLight;
+    color: @gray;
+
+    &:hover {
+      text-decoration: none;
+      border: none;
+      background-color: darken(@grayLight, 5%);
+      color: @gray;
+    }
+  }
+}
+
+.form--search {
+  margin: 0;
+  padding: 10px;
+}
+
+.actions-bar {
+  .form--search {
+    padding: 4px 0 0 0;
+  }
+
+  .filter-options {
+    padding-top: 4px;
+  }
+}

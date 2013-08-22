@@ -1,0 +1,64 @@
+.form {
+  padding: 0;
+  margin: 0;
+
+  hr {
+    display: block;
+    margin: @baseLineHeight 0;
+    border: 0;
+    border-top: 1px solid @hrBorder;
+    border-bottom: 1px solid @grayLight;
+  }
+
+  .checkbox-group {
+    font-weight: bold;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+}
+
+.form--island {
+  padding: 20px;
+}
+
+.form__header {
+  background: #e0f5fe;
+  border: 1px solid #c7eefe;
+
+  h1 {
+    text-transform: uppercase;
+    margin: 12px 20px;
+  }
+}
+
+.form__well {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.05);
+  border-width: 0 1px 1px 1px;
+
+  input[type="text"],
+  textarea {
+    display: inline-block;
+    width: 540px;
+    padding: 8px;
+  }
+
+  textarea {
+    min-height: 200px;
+  }
+
+  .text--larger {
+    font-size: 1.2em;
+  }
+}
+
+.form-fields {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    margin-bottom: 15px;
+  }
+}
