@@ -3680,12 +3680,59 @@ a.thumbnail:hover {
 .invisible {
   visibility: hidden;
 }
-/*******************************
-Fonts
-*******************************/
-/*******************************
-GLOBAL STYLES
-*******************************/
+.form {
+  padding: 0;
+  margin: 0;
+}
+.form hr {
+  display: block;
+  margin: 18px 0;
+  border: 0;
+  border-top: 1px solid #f0f1f4;
+  border-bottom: 1px solid #d8dde1;
+}
+.form .checkbox-group {
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.form--island {
+  padding: 20px;
+}
+.form__header {
+  background: #e0f5fe;
+  border: 1px solid #c7eefe;
+}
+.form__header h1 {
+  text-transform: uppercase;
+  margin: 12px 20px;
+}
+.form__well {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.05);
+  border-width: 0 1px 1px 1px;
+}
+.form__well input[type="text"],
+.form__well textarea {
+  display: inline-block;
+  width: 540px;
+  padding: 8px;
+}
+.form__well textarea {
+  min-height: 200px;
+}
+.form__well .text--larger {
+  font-size: 1.2em;
+}
+.form-fields {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.form-fields li {
+  margin-bottom: 15px;
+}
 body {
   padding-top: 70px;
   background: url(../img/background.png) repeat fixed #222222;
@@ -3721,6 +3768,10 @@ body {
   -webkit-box-shadow: 0 0 0px 3px rgba(255, 255, 255, 0.15);
   -moz-box-shadow: 0 0 0px 3px rgba(255, 255, 255, 0.15);
   box-shadow: 0 0 0px 3px rgba(255, 255, 255, 0.15);
+}
+#main-container > p {
+  padding: 10px 30px;
+  margin: 0;
 }
 /* Footer */
 footer {
@@ -3813,7 +3864,7 @@ INDEX / POST LIST
   background: #ffffff;
   list-style-type: none;
 }
-#post-list .topic {
+.topic {
   float: left;
   position: relative;
   clear: left;
@@ -3822,63 +3873,28 @@ INDEX / POST LIST
   padding: 14px 0 14px 0;
   border-bottom: 1px solid #f0f1f4;
 }
-#post-list .topic:nth-child(even) {
+.topic:nth-child(even) {
   background: #fcfcfd;
 }
-#post-list .topic article {
+.topic article {
   float: left;
   position: relative;
   width: 100%;
 }
-#post-list .topic h2 {
+.topic h2 {
   float: left;
   position: relative;
   width: 430px;
   margin: 0 0 8px 10px;
   line-height: 1.2em;
 }
-#post-list .topic .meta {
-  float: left;
-  position: relative;
-  clear: left;
-  *width: 440px;
-  margin: 0 10px;
-  color: #bbbbbb;
-}
-#post-list .topic .meta a {
-  color: #bbbbbb;
-  border-bottom: 1px dotted #cfcfcf;
-}
-#post-list .topic .meta a:hover {
-  color: #4263a4;
-}
-#post-list .topic .meta .date,
-#post-list .topic .meta .author,
-#post-list .topic .meta .last-post {
-  float: left;
-  position: relative;
-  margin: 0 12px 0 0;
-  font-size: .9em;
-}
-#post-list .topic .meta .author,
-#post-list .topic .meta .last-post {
-  padding-right: 22px;
-}
-#post-list .topic .meta .avatar {
-  position: absolute;
-  top: 0;
-  right: 0;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
-}
-#post-list .topic .actions {
+.topic .actions {
   float: right;
   position: relative;
   margin: 0 10px;
 }
-#post-list .topic .actions a,
-#post-list .topic .actions .votes {
+.topic .actions a,
+.topic .actions .votes {
   float: left;
   position: relative;
   display: block;
@@ -3891,37 +3907,72 @@ INDEX / POST LIST
   font-size: 1.1em;
   color: #4263a4;
 }
-#post-list .topic .actions a:hover,
-#post-list .topic .actions .votes:hover {
+.topic .actions a:hover,
+.topic .actions .votes:hover {
   background: #fdf0d5;
   cursor: pointer;
 }
-#post-list .topic .actions a.on,
-#post-list .topic .actions .votes.on {
+.topic .actions a.on,
+.topic .actions .votes.on {
   background: #fef7e8;
   color: #bbbbbb;
 }
-#post-list .topic .actions a:first-child,
-#post-list .topic .actions .votes:first-child {
+.topic .actions a:first-child,
+.topic .actions .votes:first-child {
   -webkit-border-radius: 3px 0 0 3px;
   -moz-border-radius: 3px 0 0 3px;
   border-radius: 3px 0 0 3px;
 }
-#post-list .topic .actions a:last-child,
-#post-list .topic .actions .votes:last-child {
+.topic .actions a:last-child,
+.topic .actions .votes:last-child {
   -webkit-border-radius: 0 3px 3px 0;
   -moz-border-radius: 0 3px 3px 0;
   border-radius: 0 3px 3px 0;
 }
-#post-list .topic .actions a:nth-child(even),
-#post-list .topic .actions .votes:nth-child(even) {
+.topic .actions a:nth-child(even),
+.topic .actions .votes:nth-child(even) {
   border-left: 1px dotted #e1e3e9;
 }
-#post-list .topic .actions a small,
-#post-list .topic .actions .votes small {
+.topic .actions a small,
+.topic .actions .votes small {
   display: block;
   font-size: .85em;
   font-weight: normal;
+}
+.meta {
+  float: left;
+  position: relative;
+  clear: left;
+  *width: 440px;
+  margin: 0 10px;
+  color: #bbbbbb;
+}
+.meta a {
+  color: #bbbbbb;
+  border-bottom: 1px dotted #cfcfcf;
+}
+.meta a:hover {
+  color: #4263a4;
+}
+.meta .date,
+.meta .author,
+.meta .last-post {
+  float: left;
+  position: relative;
+  margin: 0 12px 0 0;
+  font-size: .9em;
+}
+.meta .author,
+.meta .last-post {
+  padding-right: 22px;
+}
+.meta .avatar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
 }
 /*******************************
 POST / SINGLE VIEW
@@ -4008,7 +4059,7 @@ POST / SINGLE VIEW
   position: relative;
   width: 100%;
 }
-#single-post #topic .response .meta {
+#single-post #topic .response .single-post-meta {
   width: 160px;
   position: absolute;
   top: 0;
@@ -4018,7 +4069,7 @@ POST / SINGLE VIEW
   border-left: 1px solid #f0f1f4;
   text-align: center;
 }
-#single-post #topic .response .meta .avatar {
+#single-post #topic .response .single-post-meta .avatar {
   margin-bottom: 5px;
   border: 3px solid #ffffff;
   -webkit-border-radius: 3px;
@@ -4028,14 +4079,14 @@ POST / SINGLE VIEW
   -moz-box-shadow: 0 1px 1px #d8dde1;
   box-shadow: 0 1px 1px #d8dde1;
 }
-#single-post #topic .response .meta .author,
-#single-post #topic .response .meta .date {
+#single-post #topic .response .single-post-meta .author,
+#single-post #topic .response .single-post-meta .date {
   float: left;
   position: relative;
   clear: left;
   width: 100%;
 }
-#single-post #topic .response .meta .date {
+#single-post #topic .response .single-post-meta .date {
   color: #a2a2a2;
   font-size: .8em;
 }
@@ -4239,32 +4290,19 @@ ADD NEW POST & EDIT POST PAGES
 /*******************************
 ACTIONS MENU
 *******************************/
-#actions-bar {
-  float: left;
-  position: relative;
-  width: 100%;
+.actions-bar {
   background: #f0f1f4;
   border-bottom: 1px solid #d8dde1;
   -webkit-border-radius: 2px 2px 0 0;
   -moz-border-radius: 2px 2px 0 0;
   border-radius: 2px 2px 0 0;
-  /* Filter links */
-
+  padding: 12px 20px;
 }
-#actions-bar h1 {
-  display: block;
-  float: left;
-  position: relative;
-  margin: 12px 20px;
-  padding: 0;
+.actions-bar h1 {
+  margin: 0;
   text-transform: uppercase;
 }
-#actions-bar #filter-options {
-  float: right;
-  position: relative;
-  margin: 16px 20px;
-}
-#actions-bar .back-link {
+.actions-bar .back-link {
   display: block;
   margin: 10px 20px;
 }
@@ -4338,8 +4376,9 @@ SIDEBAR & WIDGETS
 }
 #sidebar #popular-posts ul li .meta {
   float: left;
+  clear: none;
   position: relative;
-  width: 195px;
+  width: 175px;
 }
 #sidebar #popular-posts ul li .meta .author,
 #sidebar #popular-posts ul li .meta .responses {
@@ -4363,15 +4402,9 @@ SHARE BUTTONS
   float: left;
   width: 60px;
 }
-.ideas-index #actions-bar {
-  float: left;
-  position: relative;
-  width: 100%;
+.ideas-index .actions-bar {
   background: #e0f5fe;
   border-bottom: 1px solid #c7eefe;
-  -webkit-border-radius: 2px 2px 0 0;
-  -moz-border-radius: 2px 2px 0 0;
-  border-radius: 2px 2px 0 0;
 }
 /*******************************
 CUSTOM PAGINATION
@@ -4670,4 +4703,24 @@ LOGIN BUTTONS
   bottom: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.7);
+}
+.meta .label--tag {
+  background-color: #d8dde1;
+  color: #555555;
+}
+.meta .label--tag:hover {
+  text-decoration: none;
+  border: none;
+  background-color: #cad0d6;
+  color: #555555;
+}
+.form--search {
+  margin: 0;
+  padding: 10px;
+}
+.actions-bar .form--search {
+  padding: 4px 0 0 0;
+}
+.actions-bar .filter-options {
+  padding-top: 4px;
 }

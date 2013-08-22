@@ -1,18 +1,18 @@
 <div id="single-post">
-        
+
             <!-- Actions -->
-            <div id="actions-bar">
+            <div class="actions-bar">
               <a href="{{ space.permalink }}" title="return to {{ space.title }} home" class="back-link">&laquo; return to {{ space.title }} home</a>
             </div>
-            
+
             <hr />
-          
+
             <!-- Single post header -->
             <header>
               <h1>{{ idea.title }}</h1>
               <div class="actions">
                   {% if current_user %}
-                  {% if idea.liked? %}<span class="action-like btn disabled"><i class="icon-ok-circle"></i> <span class="likecount">{{idea.likes}}</span> votes</span>{% else %}<div class="action-like btn" the_link="{{idea.like_link}}"><i class="icon-upload"></i> <span class="likecount">{{idea.likes}}</span> votes</div>{% endif %}
+                  {% if idea.liked? %}<span class="action-like btn disabled"><i class="icon-ok-circle"></i> <span class="likecount">{{idea.likes}}</span> votes</span>{% else %}<div class="action-like btn" data-url="{{idea.like_link}}"><i class="icon-upload"></i> <span class="likecount">{{idea.likes}}</span> votes</div>{% endif %}
                   {% else %}
                   <span class="action-like btn disabled"><span class="likecount">{{idea.likes}}</span> votes</span>
                   {% endif %}
@@ -20,14 +20,14 @@
                   {% if idea.user.uuid == current_user.uuid %}<a href="{{idea.permalink}}/edit" title="link to edit {{idea.title}}" class="btn"><i class="icon-pencil"></i> Edit</a>{% endif %}
                 </div>
             </header>
-          
+
             <!-- Posts list -->
             <ol id="topic">
-              
+
               <!-- Main post -->
               <li class="first response">
                 <article>
-                  <div class="meta">
+                  <div class="single-post-meta">
                     <a href="{{ idea.user.profile_url }}" title="link to {{ idea.user.nickname }}'s profile on {{ idea.user.provider }}"><img src="{{idea.user.image_url}}" alt="*idea.user*'s avatar from Twitter" width="80" class="avatar" /></a>
                     <a href="{{ idea.user.profile_url }}" title="link to {{ idea.user.nickname }}'s profile on {{ idea.user.provider }}" class="author">{{ idea.user.nickname }}</a>
                     <span class="date">{{ idea.created_at | date: "%B %d %Y" }} at {{ idea.created_at | date: "%I:%M%p" }}</span>
@@ -37,13 +37,13 @@
                   </div>
                 </article>
               </li>
-              
+
               <!-- Responses -->
               {% if idea.comments != empty %}
               {% for comment in idea.comments reversed %}
               <li class="response">
                 <article>
-                  <div class="meta">
+                  <div class="single-post-meta">
                     <a href="{{ comment.user.profile_url }}" title="link to {{ comment.user.nickname }}'s profile on {{ comment.user.provider }}"><img src="{{ comment.user.image_url }}" alt="*idea.user*'s avatar from Twitter" width="80" class="avatar" /></a>
                     <a href="{{ comment.user.profile_url }}" title="link to {{ comment.user.nickname }}'s profile on {{ comment.user.provider }}" class="author">{{ comment.user.nickname }}</a>
                     <span class="date">{{ comment.created_at | date: "%B %d %Y" }} at {{ comment.created_at | date: "%I:%M%p" }}</span>
@@ -60,11 +60,11 @@
                       Add a reply below...
                   </div>
               {% endif %}
-              
+
             </ol>
-            
+
             <hr />
-            
+
             <!-- Add reply -->
             {% if current_user %}
             <div id="add-reply">
@@ -101,5 +101,5 @@
                 </div>
             </div>
             {% endif %}
-          
+
         </div>

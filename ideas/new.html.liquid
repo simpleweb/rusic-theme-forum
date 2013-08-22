@@ -1,26 +1,59 @@
-  <!-- Actions -->
-	<div id="actions-bar">
-	  <a href="{{ space.permalink }}" title="return to {{ space.title }} home" class="back-link">&laquo; return to {{ space.title }} home</a>
-	</div>
-	
-	<hr />
-	
-	<!-- Add reply -->
-	<div id="add-new">
-	
-	  <header>
-	  <h1>Add a new topic...</h1>
-	  </header>
-	  
-	  {% if current_user %}
-	  <form id="add-form" class="well" method="post" action="{{space.permalink}}/ideas" enctype="multipart/form-data">
-	  <input id="idea_title" name="idea[title]" type="text" placeholder="Topic title" placeholder="{{theme.idea_context}} title" class="required">
-	  <textarea id="idea_content" name="idea[content]" rows="3" placeholder="Topic content" class="required" class="input-xlarge" placeholder="Your idea here..."></textarea>
-	  <label class="checkbox">
-	    <input type="checkbox" id="social-share" name="idea[should_post_to_social]" value="1" checked="checked" />share this topic to {{ current_user.provider }}?
-	  </label>
-	  <input type="submit" id="submit" value="Post topic" class="btn btn-primary btn-large" />
-	  </form>
-	  {% endif %}
-	
-	</div>
+<div class="actions-bar">
+  <a href="{{ space.permalink }}" title="return to {{ space.title }} home" class="back-link">
+    &laquo; return to {{ space.title }} home
+  </a>
+</div>
+
+{% if current_user %}
+
+  {% if idea.errors != empty %}
+    <p>
+      {{idea.errors_as_sentence}}
+    </p>
+  {% endif %}
+
+  <form class="form form--island" method="post" action="{{space.permalink}}/ideas" enctype="multipart/form-data">
+    <header class="form__header">
+      <h1>Add a new topic...</h1>
+    </header>
+
+    <fieldset class="form__well">
+
+      <ul class="form-fields">
+        <li>
+          <input name="idea[title]" value="{{idea.title}}" type="text" placeholder="Topic title" placeholder="{{theme.idea_context}} title" class="text--larger required">
+        </li>
+
+        <li>
+          <textarea name="idea[content]" rows="3" placeholder="Topic content" class="required" class="input-xlarge" placeholder="Your idea here...">{{idea.content}}</textarea>
+        </li>
+
+        <li>
+          <label class="checkbox-group">Select relevant categories:</label>
+
+          <label class="checkbox">
+            {{ idea | tag_checkbox: 'login' }} Login problems
+          </label>
+
+          <label class="checkbox">
+            {{ idea | tag_checkbox: 'email' }} Email issues
+          </label>
+
+          <label class="checkbox">
+            {{ idea | tag_checkbox: 'bug' }} Bugs and errors
+          </label>
+        </li>
+      </ul>
+
+      <hr />
+
+      <div class="actions">
+        <label class="checkbox pull-left">
+          <input type="checkbox" id="social-share" name="idea[should_post_to_social]" value="1" checked="checked" />share this topic to {{ current_user.provider }}?
+        </label>
+
+        <input type="submit" id="submit" value="Post topic" class="btn btn-primary btn-large pull-right" />
+      </div>
+    </fieldset>
+  </form>
+{% endif %}

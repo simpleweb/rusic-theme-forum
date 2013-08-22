@@ -1,5 +1,5 @@
 {% if env == "development" %}
-  {% assign asset_url="http://127.0.0.1:8080/rusic-theme-forum/public" %}
+  {% assign asset_url="http://localhost:8080" %}
 {% else %}
   {% assign asset_url="http://rusic-forum-theme.s3.amazonaws.com" %}
 {% endif %}
@@ -9,7 +9,7 @@
 
     <!-- Metadata -->
     <meta charset="utf-8">
-    
+
     <title>
         {% if idea %}
           {{idea.title}} &middot; {{space.title}}
@@ -17,11 +17,11 @@
           {{space.title}}
         {% endif %}
     </title>
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    
+
     {% if idea %}
     <meta property="og:title" content="{{ idea.title }}"/>
     <meta property="og:type" content="article"/>
@@ -39,13 +39,13 @@
     {% endif %}
 
     <!-- Stylesheets -->
-    <link href="{{ asset_url }}/css/styles.css" rel="stylesheet">
+    <link href="{{ asset_url }}/stylesheets/forum-theme.css" rel="stylesheet">
 
     <!-- HTML5, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    
+
     <!-- Scripts -->
     {{ content_for_header }}
 
@@ -90,11 +90,16 @@
           </ul>
           {% endif %}
 
+          <form action="{{space.permalink}}/search" method="get" class="navbar-form pull-right">
+            <fieldset class="input">
+              <input type="text" name="query" value="{{search.query}}" placeholder="Search&hellip;" />
+
+              <button type="submit" class="btn">Search</button>
+            </fieldset>
+          </form>
         </div>
       </div>
     </div>
-
-    <hr />
 
     <!-- Wrapper -->
     <div class="container" class="row">
@@ -123,10 +128,8 @@
         <div id="main-container" class="span11">
 
           {{ yield }}
-        
+
         </div>
-        
-        <hr />
 
         <!-- Sidebar -->
         <div id="sidebar" class="span5">
@@ -148,7 +151,7 @@
             </div>
           </div>
           {% endif %}
-          
+
           <div id="space-description" class="widget">
             {{ space.summary | markdown }}
           </div>
@@ -171,7 +174,7 @@
                 <div class="meta">
                   <h5><a href="{{ idea.permalink }}" title="link to {{ idea.title }}">{{ idea.title }}</a></h5>
                   <span class="author">by {{ idea.user.nickname }}</span>
-                  <span class="responses">{{ idea.comments_count }} replies</span>
+                  <span class="responses">{{ idea.comments_count | pluralize: 'reply' }}</span>
                 </div>
               </li>
               {% endfor %}
@@ -183,7 +186,7 @@
       </div> <!-- /row -->
 
       <hr />
-      
+
       <footer class="footer">
           <a href="{{ space.permalink }}.atom" title="link to RSS feed for {{ space.title }}" class="rss-link">RSS feed for {{ space.title }}</a>
           <p class="powered-by">{{ space.title }} is powered by <a href="http://rusic.com" title="link to Rusic">Rusic</a></p>
@@ -202,24 +205,11 @@
         </form>
       </div>
     {% endif %}
-    
+
     <!-- Javascripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-transition.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-alert.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-modal.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-dropdown.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-scrollspy.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-tab.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-tooltip.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-popover.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-button.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-collapse.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-carousel.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-typeahead.js"></script>
-    <script src="{{ asset_url }}/js/jquery.validate.min.js"></script>
-    <script src="{{ asset_url }}/js/jquery.sharrre-1.2.0.min.js"></script>
-    <script src="{{ asset_url }}/js/scripts.js"></script>
-
+    <script src="{{asset_url}}/javascripts/vendor/jquery.sharrre-1.3.4.min.js"></script>
+    <script src="{{asset_url}}/javascripts/vendor/jquery.validate.min.js"></script>
+    <script src="{{asset_url}}/javascripts/application.js"></script>
   </body>
 </html>
