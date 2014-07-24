@@ -1,15 +1,10 @@
-{% if env == "development" %}
-  {% assign asset_url="http://127.0.0.1:8080/rusic-theme-forum/public" %}
-{% else %}
-  {% assign asset_url="http://rusic-forum-theme.s3.amazonaws.com" %}
-{% endif %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
 
     <!-- Metadata -->
     <meta charset="utf-8">
-    
+
     <title>
         {% if idea %}
           {{idea.title}} &middot; {{space.title}}
@@ -17,11 +12,11 @@
           {{space.title}}
         {% endif %}
     </title>
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    
+
     {% if idea %}
     <meta property="og:title" content="{{ idea.title }}"/>
     <meta property="og:type" content="article"/>
@@ -39,21 +34,21 @@
     {% endif %}
 
     <!-- Stylesheets -->
-    <link href="{{ asset_url }}/css/styles.css" rel="stylesheet">
+    <link href="{{ space.asset_url }}/css/styles.css" rel="stylesheet">
 
     <!-- HTML5, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    
+
     <!-- Scripts -->
     {{ content_for_header }}
 
     <!-- Fav & device icons -->
-    <link rel="shortcut icon" href="{{ asset_url }}/img/favicon.ico">
-    <link rel="apple-touch-icon" href="{{ asset_url }}/img/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset_url }}/img/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset_url }}/img/apple-touch-icon-114x114.png">
+    <link rel="shortcut icon" href="{{ space.asset_url }}/img/favicon.ico">
+    <link rel="apple-touch-icon" href="{{ space.asset_url }}/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ space.asset_url }}/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ space.asset_url }}/img/apple-touch-icon-114x114.png">
 
   </head>
 
@@ -123,9 +118,9 @@
         <div id="main-container" class="span11">
 
           {{ yield }}
-        
+
         </div>
-        
+
         <hr />
 
         <!-- Sidebar -->
@@ -148,7 +143,7 @@
             </div>
           </div>
           {% endif %}
-          
+
           <div id="space-description" class="widget">
             {{ space.summary | markdown }}
           </div>
@@ -183,7 +178,7 @@
       </div> <!-- /row -->
 
       <hr />
-      
+
       <footer class="footer">
           <a href="{{ space.permalink }}.atom" title="link to RSS feed for {{ space.title }}" class="rss-link">RSS feed for {{ space.title }}</a>
           <p class="powered-by">{{ space.title }} is powered by <a href="http://rusic.com" title="link to Rusic">Rusic</a></p>
@@ -202,24 +197,24 @@
         </form>
       </div>
     {% endif %}
-    
+
     <!-- Javascripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-transition.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-alert.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-modal.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-dropdown.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-scrollspy.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-tab.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-tooltip.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-popover.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-button.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-collapse.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-carousel.js"></script>
-    <script src="{{ asset_url }}/js/bootstrap-typeahead.js"></script>
-    <script src="{{ asset_url }}/js/jquery.validate.min.js"></script>
-    <script src="{{ asset_url }}/js/jquery.sharrre-1.2.0.min.js"></script>
-    <script src="{{ asset_url }}/js/scripts.js"></script>
+    <script src="{{ space.asset_url }}/js/bootstrap-transition.js"></script>
+    <script src="{{ space.asset_url }}/js/bootstrap-alert.js"></script>
+    <script src="{{ space.asset_url }}/js/bootstrap-modal.js"></script>
+    <script src="{{ space.asset_url }}/js/bootstrap-dropdown.js"></script>
+    <script src="{{ space.asset_url }}/js/bootstrap-scrollspy.js"></script>
+    <script src="{{ space.asset_url }}/js/bootstrap-tab.js"></script>
+    <script src="{{ space.asset_url }}/js/bootstrap-tooltip.js"></script>
+    <script src="{{ space.asset_url }}/js/bootstrap-popover.js"></script>
+    <script src="{{ space.asset_url }}/js/bootstrap-button.js"></script>
+    <script src="{{ space.asset_url }}/js/bootstrap-collapse.js"></script>
+    <script src="{{ space.asset_url }}/js/bootstrap-carousel.js"></script>
+    <script src="{{ space.asset_url }}/js/bootstrap-typeahead.js"></script>
+    <script src="{{ space.asset_url }}/js/jquery.validate.min.js"></script>
+    <script src="{{ space.asset_url }}/js/jquery.sharrre-1.2.0.min.js"></script>
+    <script src="{{ space.asset_url }}/js/scripts.js"></script>
 
   </body>
 </html>
