@@ -3688,7 +3688,6 @@ GLOBAL STYLES
 *******************************/
 body {
   padding-top: 70px;
-  background: {{ space.background_color }};
   line-height: 1.5em;
   font-family: 'Droid Sans';
 }
