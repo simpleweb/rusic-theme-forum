@@ -1,55 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+ <html lang="en">
   <head>
-
-    <!-- Metadata -->
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>
-        {% if idea %}
-          {{idea.title}} &middot; {{space.title}}
-        {% else %}
-          {{space.title}}
-        {% endif %}
-    </title>
+    <!-- Hint: use the `asset_url` to reference uploaded assets -->
+    <link rel="shortcut icon" href="{{ 'favicon.ico' | asset_url }}">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <title>{{ space.title }}</title>
 
-    {% if idea %}
-    <meta property="og:title" content="{{ idea.title }}"/>
-    <meta property="og:type" content="article"/>
-    <meta property="og:url" content="{{ idea.permalink }}"/>
-    <meta property="og:image" content="{{idea.images.first.square}}"/>
-    <meta property="og:site_name" content="{{ space.title }}"/>
-    <meta property="og:description" content="{{ idea.content }}" />
-    {% else %}
-    <meta property="og:title" content="{{space.title}}"/>
-    <meta property="og:type" content="article"/>
-    <meta property="og:url" content="{{ space.permalink }}"/>
-    <meta property="og:image" content="{{ space.ideas.first.images.first.square}}"/>
-    <meta property="og:site_name" content="{{space.title}}"/>
-    <meta property="og:description" content="{{space.summary}}" />
-    {% endif %}
-
-    <!-- Stylesheets -->
-    <link href="{{ space.asset_url }}/css/styles.css" rel="stylesheet">
-
-    <!-- HTML5, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- Scripts -->
-    {{ content_for_header }}
-
-    <!-- Fav & device icons -->
-    <link rel="shortcut icon" href="{{ space.asset_url }}/img/favicon.ico">
-    <link rel="apple-touch-icon" href="{{ space.asset_url }}/img/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{ space.asset_url }}/img/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{ space.asset_url }}/img/apple-touch-icon-114x114.png">
-
+    <!--
+      Hint: use the `stylesheet_url` or `stylesheet_tag` filters for referencing
+      stylesheets. You can use liquid within stylesheets for referencing other
+      assets (images or fonts for example).
+    -->
+    <link href="{{ 'bootstrap.css' | stylesheet_url }}" rel="stylesheet" />
+    <link href="{{ 'cover.css' | stylesheet_url }}" rel="stylesheet" />
+    <link href="{{ styles.css | stylesheet_url }}" rel="stylesheet" />
   </head>
 
   <body class="{{ body_class }} {% unless current_user %}logged-out{% endunless %}">
@@ -200,21 +169,6 @@
 
     <!-- Javascripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="{{ space.asset_url }}/js/bootstrap-transition.js"></script>
-    <script src="{{ space.asset_url }}/js/bootstrap-alert.js"></script>
-    <script src="{{ space.asset_url }}/js/bootstrap-modal.js"></script>
-    <script src="{{ space.asset_url }}/js/bootstrap-dropdown.js"></script>
-    <script src="{{ space.asset_url }}/js/bootstrap-scrollspy.js"></script>
-    <script src="{{ space.asset_url }}/js/bootstrap-tab.js"></script>
-    <script src="{{ space.asset_url }}/js/bootstrap-tooltip.js"></script>
-    <script src="{{ space.asset_url }}/js/bootstrap-popover.js"></script>
-    <script src="{{ space.asset_url }}/js/bootstrap-button.js"></script>
-    <script src="{{ space.asset_url }}/js/bootstrap-collapse.js"></script>
-    <script src="{{ space.asset_url }}/js/bootstrap-carousel.js"></script>
-    <script src="{{ space.asset_url }}/js/bootstrap-typeahead.js"></script>
-    <script src="{{ space.asset_url }}/js/jquery.validate.min.js"></script>
-    <script src="{{ space.asset_url }}/js/jquery.sharrre-1.2.0.min.js"></script>
-    <script src="{{ space.asset_url }}/js/scripts.js"></script>
 
   </body>
 </html>

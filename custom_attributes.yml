@@ -2,3 +2,9 @@ customAttributes:
   attribute: asset_url
     defaultValue: "https://rusic-forum-theme.s3.amazonaws.com"
     type: String
+  attribute: discussion_type_singular
+    defaultValue: "topic"
+    type: String
+  attribute: discussion_type_plural
+    defaultValue: "topics"
+    type: String
