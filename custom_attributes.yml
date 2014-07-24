@@ -8,3 +8,10 @@ customAttributes:
   attribute: discussion_type_plural
     defaultValue: "topics"
     type: String
+  attribute: background_color
+    defaultValue: "#000"
+    type: Color
+  attribute: forum_name
+    defaultValue: "Forum name"
+    type: String
+  attribute:
