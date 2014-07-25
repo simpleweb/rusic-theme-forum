@@ -2771,7 +2771,6 @@ input[type="submit"].btn.small {
   outline: 0;
 }
 .navbar-fixed-top {
-  position: fixed;
   top: 0;
   right: 0;
   left: 0;
@@ -3676,7 +3675,6 @@ Fonts
 GLOBAL STYLES
 *******************************/
 body {
-  padding-top: 70px;
   line-height: 1.5em;
   font-family: 'Droid Sans';
 }
