@@ -6,8 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Hint: use the `asset_url` to reference uploaded assets -->
+    {% if space.favicon != "" %}
+    <link rel="shortcut icon" href="{{ space.favicon }}">
+    {% else %}
     <link rel="shortcut icon" href="{{ 'favicon.ico' | asset_url }}">
+    {% endif %}
 
     <title>{{ space.title }}</title>
 
