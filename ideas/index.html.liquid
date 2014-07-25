@@ -1,197 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+      {% if space.ideas != empty %}
 
-    {% if space.favicon.ico != "" %}
-      <link rel="shortcut icon" href="{{ space.favicon }}">
-    {% else %}
-      <link rel="shortcut icon" href="{{ 'favicon.ico' | asset_url }}">
-    {% endif %}
+          <!-- Actions -->
+          <div id="actions-bar">
 
-    <title>{{ space.title }}</title>
+            {% if filter == "own" %}
+            <h1>Showing my {{ space.discussion_type_plural }}</h1>
+            {% else %}
+            {% if sort == "like" %}
+            <h1>{{ space.discussion_type_plural }} with most votes</h1>
+            {% else %}
+            <h1>Latest {{ space.discussion_type_plural }}</h1>
+            {% endif %}
+            {% endif %}
 
-    <style type="text/css">
-      body {
-        background-color: {{ space.background_color }};
-      }
-      .navbar-inner {
-        background-color: {{ space.navbar_color }};
-      }
-      #main-container {
-        background: {{ space.forum_background_color }};
-      }
-    </style>
-    <link href="{{ 'styles.css' | stylesheet_url }}" rel="stylesheet" />
-  </head>
-
-  <body class="{{ body_class }} {% unless current_user %}logged-out{% endunless %}">
-
-    <!-- Header -->
-    <div id="top-bar" class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <!-- Space title -->
-          {% if space.navbar_logo_link != "" %}
-          <a class="brand" href="{{ space.navbar_logo_link }}" title="link to homepage for {{ space.title }}">
-            {{ space.title }}
-          </a>
-          {% else %}
-          <a class="brand" href="{{ space.permalink }}" title="link to homepage for {{ space.title }}">
-            {{ space.title }}
-          </a>
-          {% endif %}
-
-          {% if current_user %}
-          <!-- Logged in user menu -->
-          <ul class="nav pull-right">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{current_user.image_url}}" alt="{{current_user.nickname}}'s avatar from {{current_user.provider}}" width="20" height="20" class="avatar" />Logged in as {{current_user.nickname}} <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="{{ space.permalink }}/ideas/new"><i class="icon-plus-sign"></i> Add new topic</a></li>
-                <li><a href="{{ space.permalink }}?filter=own"><i class="icon-user"></i> View my topics</a></li>
-                <li class="divider"></li>
-                <li><a href="/auth/signout">Logout</a></li>
-              </ul>
-            </li>
-          </ul>
-          {% else %}
-          <!-- Logged out user menu -->
-          <ul class="nav pull-right">
-            <li><a href="/auth/twitter" title="login with Twitter">Login with Twitter</a></li>
-            <li><a href="/auth/facebook" title="login with Facebook">Login with Facebook</a></li>
-          </ul>
-          {% endif %}
-
-        </div>
-      </div>
-    </div>
-
-    <hr />
-
-    <!-- Wrapper -->
-    <div class="container" class="row">
-      <header class="page-header">
-        <div class="main-search">
-          <h1>{{ space.forum_name }}</h1>
-          <h2>{{ space.forum_description }}</h2>
-          <form action="{{space.permalink}}/search" method="get" class="form--search">
-            <fieldset class="input">
-              <input type="text" name="query" value="{{search.query}}" placeholder="Search&hellip;" />
-                <button type="submit" class="btn btn-large">Search</button>
-              </fieldset>
-            </form>
-          </div>
-        </header>
-      <div class="row">
-
-        {% if error %}
-        <div class="alert alert-error">
-        <a class="close" data-dismiss="alert">×</a>
-        {{ error }}
-        </div>
-        {% endif %}
-        {% if alert %}
-        <div class="alert alert-block">
-        <a class="close" data-dismiss="alert">×</a>
-        {{ alert }}
-        </div>
-        {% endif %}
-        {% if notice %}
-        <div class="alert alert-success">
-        <a class="close" data-dismiss="alert">×</a>
-        {{ notice }}
-        </div>
-        {% endif %}
-
-        <!-- Main container -->
-        <div id="main-container" class="span11">
-
-          {{ yield }}
-
-        </div>
-
-        <hr />
-
-        <!-- Sidebar -->
-        <div id="sidebar" class="span5">
-
-          {% if current_user %}
-          <div id="add-new" class="widget">
-            <a href="{{ space.permalink }}/ideas/new" title="add new topic" class="add-post btn btn-large btn-primary"><i class="icon-plus-sign icon-white"></i> Add new topic</a>
-          </div>
-          {% else %}
-          <div id="add-new" class="widget">
-            <div class="add-post btn btn-large btn-primary disabled">Add new topic</div>
-            <div class="login-prompt">
-              <span class="pointer"></span>
-              <span>To post a new topic please login with Twitter or Facebook:</span>
-              <ul class="auth">
-                  <li class="twitter"><a href="/auth/twitter"><span></span><i class="icon-twitter"></i> Login with Twitter</a></li>
-                  <li class="facebook"><a href="/auth/facebook"><span></span><i class="icon-facebook"></i> Login with Facebook</a></li>
-              </ul>
+            <div id="filter-options" class="btn-group">
+              <a href="{{space.permalink}}" title="Show latest {{ theme.ideas_context }} first" class="btn {% if filter == "own" %}{% else %}{% if sort == "like" %}{% else %}active{% endif %}{% endif %}"><i class="icon-asterisk"></i> Newest first</a>
+              <a href="{{ space.permalink }}?sort=like"title="show most popular {{ theme.ideas_context }} first" class="btn {% if sort == "like" %}active{% endif %}"><i class="icon-fire"></i> Most votes</a>
+              {% if current_user %}<a href="{{ space.permalink }}?filter=own" title="show only my {{ theme.ideas_context }}" class="btn {% if filter == "own" %}active{% endif %}"><i class="icon-user"></i> Mine</a>{% endif %}
             </div>
           </div>
-          {% endif %}
 
-          <div id="space-description" class="widget">
-            {{ space.summary | markdown }}
-          </div>
+          <hr />
 
-          <div id="space-share" class="widget">
-            <h4>Share this {% if idea %}topic{% else %}space{% endif %}</h4>
-            {% if idea %}
-            <div id="shareme" data-text="{{ idea.content }} -"></div>
-            {% else %}
-            <div id="shareme" data-text="{{ space.summary }} -"></div>
-            {% endif %}
-          </div>
+          <!-- Posts list -->
+          {% paginate space.ideas by 20 %}
+          <ul id="post-list">
 
-          <div id="popular-posts" class="widget">
-            <h4>Popular topics</h4>
-            <ul>
-              {% for idea in space.most_commented_ideas | limit: 4 %}
-              <li>
-                <img src="{{idea.user.image_url}}" alt="{{ idea.user.nickname }}'s avatar from {{idea.user.provider}}" class="avatar" width="35" height="35" />
-                <div class="meta">
-                  <h5><a href="{{ idea.permalink }}" title="link to {{ idea.title }}">{{ idea.title }}</a></h5>
-                  <span class="author">by {{ idea.user.nickname }}</span>
-                  <span class="responses">{{ idea.comments_count }} replies</span>
+            {% for idea in pagination.collection %}
+            <li class="topic">
+              <article>
+                <h2><a href="{{ idea.permalink }}" title="link to {{ idea.title }}">{{ idea.title }}</a></h2>
+                <!-- Topic actions -->
+                <div class="actions">
+
+                  {% if idea.liked? %}
+                  <span class="votes on"><span class="likecount">{{idea.likes}}</span> <small>votes</small></span>
+                  {% else %}
+                  <span class="votes action-like" the_link="{{idea.like_link}}"><span class="likecount">{{idea.likes}}</span> <small>votes</small></span>
+                  {% endif %}
+
+
+                  <a href="{{ idea.permalink }}" class="responses">{{ idea.comments_count }} <small>replies</small></a>
                 </div>
-              </li>
-              {% endfor %}
-            </ul>
-          </div>
+                <!-- Topic meta -->
+                <div class="meta">
+                  <span class="date"><small>started on {{ idea.created_at | date: "%b %d" }}</small></span>
+                  <span class="author">by <a href="{{ idea.user.profile_url }}" title="link to {{ idea.user.nickname }}'s profile on {{ idea.user.provider }}">{{ idea.user.nickname }}</a>
+                  <a href="{{ idea.user.profile_url }}" title="link to {{ idea.user.nickname }}'s profile on {{ idea.user.provider }}"><img src="{{idea.user.image_url}}" alt="{{ idea.user.nickname }}'s avatar from {{idea.user.provider}}" width="16" height="16" class="avatar" /></a></span>
+                  <!--<span class="last-post">last reply by {{ first_comment.user.nickname }} <img src="http://placehold.it/16x16" alt="*comment.author*'s avatar from *comment.author.provider*" class="avatar" /></span>-->
 
+                </div>
+              </article>
+            </li>
+            {% endfor %}
+
+          </ul>
+
+          <!-- Pagination -->
+          {{ pagination | default_pagination }}
+          {% endpaginate %}
+
+      {% else %}
+
+        <div id="empty">
+          There aren't any {{ space.discussion_type_plural }} here yet.<br /> {% if current_user %}<a href="{{ space.permalink }}/ideas/new" title="link to start a new topic">Click here to start a new {{ space.discussion_type_singular }}.</a>{% else %}Login with Twitter or Facebook to add a new {{ space.discussion_type_singular }}.{% endif %}
         </div>
 
-      </div> <!-- /row -->
-
-      <hr />
-
-      <footer class="footer">
-          <a href="{{ space.permalink }}.atom" title="link to RSS feed for {{ space.title }}" class="rss-link">RSS feed for {{ space.title }}</a>
-          <p class="powered-by">{{ space.title }} is powered by <a href="http://rusic.com" title="link to Rusic">Rusic</a></p>
-      </footer>
-
-    </div> <!-- end wrapper -->
-
-    {% if params.login == 'success' and current_participant and current_participant.missing_email_address? %}
-      <div class="modal-cover" id="emailCaptureModalCover"></div>
-      <div class="modal" id="emailCaptureModal">
-        <h3>Please enter your email address:</h3>
-        <br/>
-        <form action="/participant" method="post">
-          <input type="text" name="participant[email_address]" placeholder="you@example.com"/>
-          <input type="submit" value="Submit" class="btn"/>
-        </form>
-      </div>
-    {% endif %}
-
-    <!-- Javascripts -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="{{ 'bootstrap.js' | javascript_url }}"></script>
-  </body>
-</html>
+      {% endif %}
