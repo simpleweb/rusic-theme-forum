@@ -14,9 +14,6 @@ customAttributes:
   attribute: banner_image
     defaultValue:
     type: String
-  attribute: font
-    defaultValue:
-    type: String
   attribute: favicon
     defaultValue:
     type: String
