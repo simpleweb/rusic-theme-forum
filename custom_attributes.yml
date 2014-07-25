@@ -7,10 +7,31 @@ customAttributes:
     type: String
   attribute: background_color
     defaultValue: "#000"
-    type: Color
+    type: String
   attribute: forum_name
     defaultValue: "Forum name"
     type: String
   attribute: banner_image
     defaultValue:
-    type: Image
+    type: String
+  attribute: font
+    defaultValue:
+    type: String
+  attribute: favicon
+    defaultValue:
+    type: String
+  attribute: navbar_color
+    defaultValue: "#fff"
+    type: String
+  attribute: navbar_logo
+    defaultValue:
+    type: String
+  attribute: navbar_logo_link
+    defaultValue:
+    type: String
+  attribute: forum_background_color
+    defaultValue: "#aaa"
+    type: String
+  attribute: font_family
+    defaultValue: Arial
+    type: String
