@@ -6,7 +6,7 @@ customAttributes:
     defaultValue: "topics"
     type: String
   attribute: background_color
-    defaultValue: "#000"
+    defaultValue: "#fff"
     type: String
   attribute: forum_name
     defaultValue: "Forum name"
@@ -18,7 +18,7 @@ customAttributes:
     defaultValue:
     type: String
   attribute: navbar_color
-    defaultValue: "#fff"
+    defaultValue: "#000"
     type: String
   attribute: navbar_logo
     defaultValue:
@@ -27,8 +27,5 @@ customAttributes:
     defaultValue:
     type: String
   attribute: forum_background_color
-    defaultValue: "#aaa"
-    type: String
-  attribute: font_family
-    defaultValue: Arial
+    defaultValue: "#000"
     type: String

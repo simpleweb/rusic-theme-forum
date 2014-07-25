@@ -1275,7 +1275,7 @@ table .span12 {
   height: 14px;
   line-height: 14px;
   vertical-align: text-top;
-  background-image: url("./glyphicons-halflings.png");
+  background-image: url("https://d3vay64f972gli.cloudfront.net/assets/000/001/591/files/original/glyphicons-halflings-531d4b607365ac65b09a181216f0664d.png?1406297105");
   background-position: 14px 14px;
   background-repeat: no-repeat;
   *margin-right: .3em;
@@ -1285,7 +1285,7 @@ table .span12 {
   *margin-left: 0;
 }
 .icon-white {
-  background-image: url("./glyphicons-halflings-white.png");
+  background-image: url("https://d3vay64f972gli.cloudfront.net/assets/000/001/590/files/original/glyphicons-halflings-white-11118ae8db796d41dd11482067c89d01.png?1406297104");
 }
 .icon-glass {
   background-position: 0      0;
@@ -4632,10 +4632,10 @@ LOGIN BUTTONS
   margin: 0 5px 0 -5px;
 }
 .auth .twitter i {
-  background: url(./icon-twitter.png) no-repeat;
+  background: url(https://d3vay64f972gli.cloudfront.net/assets/000/001/593/files/original/icon-twitter-bef581aada2529027336c57275a04839.png?1406297108) no-repeat;
 }
 .auth .facebook i {
-  background: url(./icon-facebook.png) no-repeat;
+  background: url(https://d3vay64f972gli.cloudfront.net/assets/000/001/592/files/original/icon-facebook-87229a2ef4629aea7a9247447b81a834.png?1406297106) no-repeat;
 }
 #emailCaptureModal {
   width: 340px;
