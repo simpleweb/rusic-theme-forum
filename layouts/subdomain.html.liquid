@@ -11,13 +11,14 @@
 
     <title>{{ space.title }}</title>
 
-    <!--
-      Hint: use the `stylesheet_url` or `stylesheet_tag` filters for referencing
-      stylesheets. You can use liquid within stylesheets for referencing other
-      assets (images or fonts for example).
-    -->
-    <link href="{{ 'bootstrap.css' | stylesheet_url }}" rel="stylesheet" />
-    <link href="{{ 'cover.css' | stylesheet_url }}" rel="stylesheet" />
+    <style type="text/css">
+      body {
+        background-color: {{ space.background_color }};
+      }
+      .navbar-inner {
+        background-color: {{ space.navbar_color }};
+      }
+    </style>
     <link href="{{ 'styles.css' | stylesheet_url }}" rel="stylesheet" />
   </head>
 
@@ -27,11 +28,16 @@
     <div id="top-bar" class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-
           <!-- Space title -->
+          {% if space.navbar_logo_link != "" %}
+          <a class="brand" href="{{ space.navbar_logo_link }}" title="link to homepage for {{ space.title }}">
+            {{ space.title }}
+          </a>
+          {% else %}
           <a class="brand" href="{{ space.permalink }}" title="link to homepage for {{ space.title }}">
             {{ space.title }}
           </a>
+          {% endif %}
 
           {% if current_user %}
           <!-- Logged in user menu -->
@@ -62,6 +68,18 @@
 
     <!-- Wrapper -->
     <div class="container" class="row">
+      <header class="page-header">
+        <div class="main-search">
+          <h1>{{ space.forum_name }}</h1>
+          <h2>{{ space.forum_description }}</h2>
+          <form action="{{space.permalink}}/search" method="get" class="form--search">
+            <fieldset class="input">
+              <input type="text" name="query" value="{{search.query}}" placeholder="Search&hellip;" />
+                <button type="submit" class="btn btn-large">Search</button>
+              </fieldset>
+            </form>
+          </div>
+        </header>
       <div class="row">
 
         {% if error %}
