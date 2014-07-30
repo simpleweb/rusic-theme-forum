@@ -1,24 +1,56 @@
   <!-- Actions -->
-  <div id="actions-bar">
-    <a href="{{ idea.permalink }}" title="back to {{ idea.title }}" class="back-link">&laquo; return to {{ idea.title }}</a>
+  <div class="actions-bar">
+    <a href="{{ idea.permalink }}" title="return to {{ idea.title }}" class="back-link">&laquo; Return to {{ idea.title }}</a>
   </div>
-  
   <hr />
-  
+
   <!-- Add reply -->
-  <div id="edit-topic">
-  
+  <div class="edit-topic">
+
     <header>
-    <h1>Editing {{ idea.title }}...</h1>
+      <div class="form-header">
+        <h1>Editing: {{ idea.title }}...</h1>
+      </div>
     </header>
-    
+
     {% if current_user %}
-    <form id="edit-form" class="well" method="post" action="{{idea.permalink}}" enctype="multipart/form-data">
-    <input type="hidden" name="_method" value="put" />
-    <input id="idea_title" name="idea[title]" type="text" placeholder="Topic title" placeholder="{{theme.idea_context}} title" value="{{ idea.title }}" class="required">
-    <textarea id="idea_content" name="idea[content]" rows="3" placeholder="Topic content" class="required" class="input-xlarge" placeholder="Your topic here...">{{ idea.content }}</textarea>
-    <input type="submit" id="submit" value="Update topic" class="btn btn-primary btn-large" />
+    <form id="edit-form" class="well clearfix" method="post" action="{{idea.permalink}}" enctype="multipart/form-data">
+      <input type="hidden" name="_method" value="put" />
+       <div class="new-topic-row">
+        <div class="new-topic-left-col">
+          <label for="idea_title">Title:</title>
+        </div>
+        <div class="new-topic-right-col">
+          <input id="idea_title" name="idea[title]" type="text" placeholder="Question title" placeholder="{{theme.idea_context}} title" value="{{ idea.title }}" class="required">
+        </div>
+      </div>
+
+      <div class="new-topic-row">
+        <div class="new-topic-left-col">
+          <label for="idea_content">Content:</title>
+        </div>
+        <div class="new-topic-right-col">
+          <textarea id="idea_content" name="idea[content]" rows="8" placeholder="Question content" class="required" class="input-xlarge" placeholder="Your question here...">{{ idea.content }}</textarea>
+        </div>
+      </div>
+
+      <div class="new-topic-row">
+        <div class="new-topic-left-col">
+          <label for="idea_tag_list" >Tags:</title>
+        </div>
+
+        <script>
+          var tagArray = new Array( "{{ idea.tag_list | join: '" , "' }}");
+        </script>
+
+        <div class="new-topic-right-col">
+          <div class="tag-wrap">
+            <input id="idea_tag_list" name="idea[tag_list]" type="text"  data-autocomplete-url="{{space.permalink}}/tags/search.json"  placeholder="Tag this question. Separate tags, with, commas" class="required" >
+          </div>
+          <input type="submit" id="submit" value="Update question" class="btn btn-primary btn-large" />
+        </div>
+      </div>
     </form>
     {% endif %}
-  
+
   </div>

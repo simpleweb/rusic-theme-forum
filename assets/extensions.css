@@ -1,0 +1,13 @@
+.form--search input[type="text"] {
+  width: 450px;
+  font-size:21px;
+  padding:12px 8px;
+  margin:0;
+  line-height: 22px;
+  font-weight: normal;
+}
+.form--search button {
+  margin:0 0 0 10px;
+  line-height: normal;
+  height:46px;
+}

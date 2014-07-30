@@ -1,26 +1,55 @@
   <!-- Actions -->
-	<div id="actions-bar">
-	  <a href="{{ space.permalink }}" title="return to {{ space.title }} home" class="back-link">&laquo; return to {{ space.title }} home</a>
-	</div>
-	
-	<hr />
-	
-	<!-- Add reply -->
-	<div id="add-new">
-	
-	  <header>
-	  <h1>Add a new topic...</h1>
-	  </header>
-	  
-	  {% if current_user %}
-	  <form id="add-form" class="well" method="post" action="{{space.permalink}}/ideas" enctype="multipart/form-data">
-	  <input id="idea_title" name="idea[title]" type="text" placeholder="Topic title" placeholder="{{theme.idea_context}} title" class="required">
-	  <textarea id="idea_content" name="idea[content]" rows="3" placeholder="Topic content" class="required" class="input-xlarge" placeholder="Your idea here..."></textarea>
-	  <label class="checkbox">
-	    <input type="checkbox" id="social-share" name="idea[should_post_to_social]" value="1" checked="checked" />share this topic to {{ current_user.provider }}?
-	  </label>
-	  <input type="submit" id="submit" value="Post topic" class="btn btn-primary btn-large" />
-	  </form>
-	  {% endif %}
-	
-	</div>
+  <div class="actions-bar actions-bar-single">
+    <a href="{{ space.permalink }}" title="return to {{ space.title }} home" class="back-link">&laquo; Return to {{ space.title }} home</a>
+  </div>
+  <hr />
+
+  <!-- Add reply -->
+  <div class="add-new">
+
+    <header>
+      <div class="form-header">
+        <h1>Add a new {{ space.discussion_type_singular }}...</h1>
+      </div>
+    </header>
+
+    {% if current_user %}
+    <form id="add-form" class="well clearfix" method="post" action="{{space.permalink}}/ideas" enctype="multipart/form-data">
+      <div class="new-topic-row">
+        <div class="new-topic-left-col">
+          <label for="idea_title">Title:</title>
+        </div>
+        <div class="new-topic-right-col">
+          <input id="idea_title" name="idea[title]" type="text" placeholder="Question title" placeholder="{{theme.idea_context}} title" class="required">
+        </div >
+      </div>
+
+      <div class="new-topic-row">
+        <div class="new-topic-left-col">
+          <label for="idea_content">Content:</title>
+        </div>
+        <div class="new-topic-right-col">
+          <textarea id="idea_content" name="idea[content]" rows="8" placeholder="Question content" class="required" class="input-xlarge"></textarea>
+        </div>
+      </div>
+
+      <div class="new-topic-row">
+        <div class="new-topic-left-col">
+          <label for="idea_tag_list" >Tags:</title>
+        </div>
+        <div class="new-topic-right-col">
+          <div class="tag-wrap">
+            <input id="idea_tag_list" name="idea[tag_list]" type="text" value="{{idea.tag_list}}" data-autocomplete-url="{{space.permalink}}/tags/search.json"  placeholder="Tag this question. Separate tags, with, commas" class="required" >
+          </div>
+          <div class="options">
+            <label class="checkbox" for="social-share">
+              <input type="checkbox" id="social-share" name="idea[should_post_to_social]" value="1" checked="checked" />share this question to {{ current_user.provider }}?
+              </label>
+          </div>
+          <input type="submit" id="submit" value="Post topic" class="btn btn-primary btn-large" />
+        </div>
+      </div>
+   </form>
+    {% endif %}
+
+  </div>

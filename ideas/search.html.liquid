@@ -1,0 +1,61 @@
+  <!-- Actions -->
+  <div class="actions-bar actions-bar-single">
+    <a href="{{ space.permalink }}" title="return to {{ space.title }} home" class="back-link">&laquo; Return to {{ space.title }} home</a>
+  </div>
+
+  <div id="actions-bar" class="clearfix">
+    <h1 class="pull-left">Search results for “{{search.query}}”</h1>
+  </div>
+
+  {% if search.results_count == 0 %}
+    <hr /><br />
+    <p>Sorry, no results found for <b>{{search.query}}</b>.</p>
+  {% else %}
+
+  {% if search.performed? %}
+    <p>
+      {{ search.results_count | pluralize: 'question' }} found.
+    </p>
+    <hr />
+  {% endif %}
+
+  {% paginate search.results by 10 %}
+    <ul id="post-list">
+      {% for idea in pagination.collection %}
+        <li class="topic">
+          <article>
+            <h2><a href="{{ idea.permalink }}" title="link to {{ idea.title }}">{{ idea.title }}</a></h2>
+            <!-- Topic actions -->
+                       <div class="actions">
+              {% if idea.liked? %}
+                <a href="{{ idea.permalink }}" class="votes on">{{idea.likes}} <small>votes</small></a>
+                {% else %}
+                {% if current_user %}
+                <a href="{{ idea.permalink }}" class="votes">{{idea.likes}} <small>votes</small></a>
+                {% else %}
+                <span class="votes cursorPointer open-sign-in"><span class="likecount">{{idea.likes}}</span> <small>votes</small></span>
+                {% endif %}
+              {% endif %}
+              <a href="{{ idea.permalink }}" class="responses">{{ idea.comments_count }} <small>replies</small></a>
+            </div>
+            <!-- Topic meta -->
+            <div class="meta">
+              <span class="author">Asked by <a class="avatar" href="{{ idea.user.profile_url }}" title="link to {{ idea.user.nickname }}'s profile on {{ idea.user.provider }}"><img src="{{idea.user.image_url}}" alt="{{ idea.user.nickname }}'s avatar from {{idea.user.provider}}" width="24" height="24" class="avatar" />
+                <a href="{{ idea.user.profile_url }}" title="link to {{ idea.user.nickname }}'s profile on {{ idea.user.provider }}">{{ idea.user.nickname }}</a>
+              </a></span>
+              <span class="date"><small>on {{ idea.created_at | date: "%b %d" }}</small></span>
+
+            </div>
+            <span class="search-tag-wrap">
+              {% for tag in idea.tag_list %}
+                <a href="{{space.permalink}}/tagged/{{tag}}" title="tagged with &ldquo;{{tag}}&rdquo;" class="tag-link"><span class="tm-tag"><span>{{tag}}</span></span></a>
+              {% endfor %}
+            </span>
+          </article>
+        </li>
+      {% endfor %}
+    </ul>
+
+    {{ pagination | default_pagination }}
+  {% endpaginate %}
+{% endif %}

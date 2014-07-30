@@ -2,30 +2,53 @@ customAttributes:
   attribute: discussion_type_singular
     defaultValue: "topic"
     type: String
+    helpText: "What type of discussion will this forum be for?"
   attribute: discussion_type_plural
     defaultValue: "topics"
     type: String
+    helpText: "Plural of the discussion type"
   attribute: background_color
     defaultValue: "#fff"
     type: String
+    helpText: "Background color for the forum"
   attribute: forum_name
     defaultValue: "Forum name"
     type: String
-  attribute: banner_image
-    defaultValue:
-    type: String
+    helpText: "The name of your forum"
   attribute: favicon
     defaultValue:
     type: String
+    helpText: "Favicon for your forum"
   attribute: navbar_color
     defaultValue: "#000"
     type: String
+    helpText: "Color of the navigation bar"
   attribute: navbar_logo
     defaultValue:
     type: String
+    helpText: "Logo for your navigation bar"
   attribute: navbar_logo_link
     defaultValue:
     type: String
-  attribute: forum_background_color
-    defaultValue: "#000"
+    helpText: "Link for your navbar logo"
+  attribute: google_analytics_code
+    defaultValue:
     type: String
+    helpText: "Google analytics code for tracking purposes"
+  attribute: contact_email
+    defaultValue: "help@rusic.com"
+    type: String
+    helpText: "Contact email address"
+  attribute: text_color
+    defaultValue: "#303030"
+    type: String
+    helpText: "Set the color of the text"
+  attribute: link_color
+    defaultValue: "#3feec4"
+    type: String
+    helpText: "Set the color for your links"
+  attribute: link_hover_color
+    defaultValue: "#3ae7c0"
+    type: String
+    helpText: "Set the color for the links when they're hovered over"
+

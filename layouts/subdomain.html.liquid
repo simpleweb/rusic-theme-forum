@@ -1,37 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
- <html lang="en">
+<html class="no-js" lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        {% if idea %}
+          {{idea.title}} &middot; {{space.title}}
+        {% else %}
+          {{space.title}}
+        {% endif %}
+    </title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script src="{{ 'html5shiv.js' | javascript_url }}"></script>
+    <link rel="stylesheet" href="http://contactzilla.com/wp-content/themes/Contactzilla-2013/css/ie.css">
+    <![endif]-->
 
+    <!-- custom attribute styles -->
     {% if space.favicon != "" %}
-    <link rel="shortcut icon" href="{{ space.favicon }}">
+      <link rel="shortcut icon" href="{{ space.favicon }}">
     {% else %}
-    <link rel="shortcut icon" href="{{ 'favicon.ico' | asset_url }}">
+      <link rel="shortcut icon" href="{{ 'favicon.ico' | asset_url }}">
     {% endif %}
-
-    <title>{{ space.title }}</title>
 
     <style type="text/css">
       body {
         background-color: {{ space.background_color }};
+        color: {{ space.text_color }};
       }
-      .navbar-inner {
+      nav {
         background-color: {{ space.navbar_color }};
       }
+      a {
+        color: {{ space.link_color }};
+      }
+
+      a:hover {
+        color: {{ space.link_hover_color }};
+      }
+
+      h1 a,
+      h2 a,
+      h3 a,
+      h4 a,
+      h5 a,
+      h6 a,
+      p a {
+        border-bottom: 1px dotted {{ space.link_color }};
+      }
     </style>
-    <link href="{{ 'styles.css' | stylesheet_url }}" rel="stylesheet" />
+
+    <link href="{{ 'styles.css' | stylesheet_url }}" rel="stylesheet">
+    <link href="{{ 'extensions.css' | stylesheet_url }}" rel="stylesheet">
+    <link href="{{ 'tagmanager.css' | stylesheet_url }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://teezilla.s3.amazonaws.com/javascripts/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', '{{ space.google_analytics_code }}', '{{ space.permalink }}');
+      ga('send', 'pageview');
+
+    </script>
+
   </head>
-
-  <body class="{{ body_class }} {% unless current_user %}logged-out{% endunless %}">
-
-    <!-- Header -->
-    <div id="top-bar" class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <!-- Space title -->
+  <body class="home page page-id-2 page-template-default landing">
+    <div class="wrapper">
+      <nav>
           {% if space.navbar_logo_link != "" %}
           <a class="brand" href="{{ space.navbar_logo_link }}" title="link to homepage for {{ space.title }}">
             {% if space.navbar_logo != "" %}
@@ -46,145 +84,108 @@
           </a>
           {% endif %}
 
-          {% if current_user %}
-          <!-- Logged in user menu -->
-          <ul class="nav pull-right">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{current_user.image_url}}" alt="{{current_user.nickname}}'s avatar from {{current_user.provider}}" width="20" height="20" class="avatar" />Logged in as {{current_user.nickname}} <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="{{ space.permalink }}/ideas/new"><i class="icon-plus-sign"></i> Add new topic</a></li>
-                <li><a href="{{ space.permalink }}?filter=own"><i class="icon-user"></i> View my topics</a></li>
-                <li class="divider"></li>
-                <li><a href="/auth/signout">Logout</a></li>
-              </ul>
-            </li>
+          <ul>
+            <li><a href="#" class="open-sign-in">login</a></li>
           </ul>
-          {% else %}
-          <!-- Logged out user menu -->
-          <ul class="nav pull-right">
-            <li><a href="/auth/twitter" title="login with Twitter">Login with Twitter</a></li>
-            <li><a href="/auth/facebook" title="login with Facebook">Login with Facebook</a></li>
-          </ul>
-          {% endif %}
+      </nav>
+    </div>
+    <div class="wrapper wrapper-wide">
+      <div id="container">
+        <div id="inner-wrapper">
+          <header class="page-header">
+            <div class="main-search">
+              <h1>{{ space.title }}</h1>
+              <h2>{{ space.forum_description }}</h2>
+              <h2>If you can't find a solution please {% unless current_user %}<a href="#" class="open-sign-in">login</a> or {% endunless %}<a href="mailto:{{ space.contact_email }}">mail us</a>.</h2>
+              <form action="{{space.permalink}}/search" method="get" class="form--search">
+                <fieldset class="input">
+                  <input type="text" name="query" value="{{search.query}}" placeholder="Search&hellip;" />
+                  <button type="submit" class="btn btn-large">Search</button>
+                </fieldset>
+              </form>
+            </div>
+          </header>
+          <section class="content">
+            <div class="row">
+              <div id="main-container" class="span9">
+                {{ yield }}
+              </div>
 
+              <div id="sidebar" class="span3">
+                <div id="add-new" class="widget">
+                  {% if current_user %}
+                    <p><strong>{{current_user.nickname }}</strong><br /><a href="/auth/signout" title="sign out">Sign Out</a></p>
+                    <img src="{{current_user.image_url}}" title="{{current_user.nickname }}'s Avatar">
+                    <a href="{{ space.permalink }}/ideas/new" title="add new question" class="add-post btn btn-large btn-primary btn-block">Add {{ space.discussion_type_singular }}</a>
+                  {% else %}
+                    <a id="sign-in-popup" href="#lightbox-sign-in" class="add-post btn btn-large btn-primary btn-block"> Add {{ space.discussion_type_singular }}</a>
+                  {% endif %}
+
+                </div>
+
+                <div id="space-description" class="widget">
+                  {{ space.summary | markdown }}
+                </div>
+
+                <br/>
+
+                <div id="popular-posts" class="widget">
+                  <h4 class="sidebar-title">Popular {{ space.discussion_type_plural }}</h4>
+                  <ul>
+                    {% for idea in space.most_commented_ideas | limit: 4 %}
+                    <li>
+                      <img src="{{idea.user.image_url}}" alt="{{ idea.user.nickname }}'s avatar from {{idea.user.provider}}" class="avatar" width="35" height="35" />
+                      <div class="meta">
+                        <h5><a href="{{ idea.permalink }}" title="link to {{ idea.title }}">{{ idea.title }}</a></h5>
+                        <span class="author">by {{ idea.user.nickname }}</span>
+                        <span class="responses">{{ idea.comments_count }} replies</span>
+                      </div>
+                    </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+              <!-- /.sidebar -->
+            </div>
+
+          </section>
         </div>
       </div>
     </div>
 
-    <hr />
-
-    <!-- Wrapper -->
-    <div class="container" class="row">
-      <div class="row">
-
-        {% if error %}
-        <div class="alert alert-error">
-        <a class="close" data-dismiss="alert">×</a>
-        {{ error }}
-        </div>
-        {% endif %}
-        {% if alert %}
-        <div class="alert alert-block">
-        <a class="close" data-dismiss="alert">×</a>
-        {{ alert }}
-        </div>
-        {% endif %}
-        {% if notice %}
-        <div class="alert alert-success">
-        <a class="close" data-dismiss="alert">×</a>
-        {{ notice }}
-        </div>
-        {% endif %}
-
-        <!-- Main container -->
-        <div id="main-container" class="span11">
-
-          {{ yield }}
-
-        </div>
-
-        <hr />
-
-        <!-- Sidebar -->
-        <div id="sidebar" class="span5">
-
-          {% if current_user %}
-          <div id="add-new" class="widget">
-            <a href="{{ space.permalink }}/ideas/new" title="add new topic" class="add-post btn btn-large btn-primary"><i class="icon-plus-sign icon-white"></i> Add new topic</a>
-          </div>
-          {% else %}
-          <div id="add-new" class="widget">
-            <div class="add-post btn btn-large btn-primary disabled">Add new topic</div>
-            <div class="login-prompt">
-              <span class="pointer"></span>
-              <span>To post a new topic please login with Twitter or Facebook:</span>
-              <ul class="auth">
-                  <li class="twitter"><a href="/auth/twitter"><span></span><i class="icon-twitter"></i> Login with Twitter</a></li>
-                  <li class="facebook"><a href="/auth/facebook"><span></span><i class="icon-facebook"></i> Login with Facebook</a></li>
-              </ul>
-            </div>
-          </div>
-          {% endif %}
-
-          <div id="space-description" class="widget">
-            {{ space.summary | markdown }}
-          </div>
-
-          <div id="space-share" class="widget">
-            <h4>Share this {% if idea %}topic{% else %}space{% endif %}</h4>
-            {% if idea %}
-            <div id="shareme" data-text="{{ idea.content }} -"></div>
-            {% else %}
-            <div id="shareme" data-text="{{ space.summary }} -"></div>
-            {% endif %}
-          </div>
-
-          <div id="popular-posts" class="widget">
-            <h4>Popular topics</h4>
-            <ul>
-              {% for idea in space.most_commented_ideas | limit: 4 %}
-              <li>
-                <img src="{{idea.user.image_url}}" alt="{{ idea.user.nickname }}'s avatar from {{idea.user.provider}}" class="avatar" width="35" height="35" />
-                <div class="meta">
-                  <h5><a href="{{ idea.permalink }}" title="link to {{ idea.title }}">{{ idea.title }}</a></h5>
-                  <span class="author">by {{ idea.user.nickname }}</span>
-                  <span class="responses">{{ idea.comments_count }} replies</span>
-                </div>
-              </li>
-              {% endfor %}
-            </ul>
-          </div>
-
-        </div>
-
-      </div> <!-- /row -->
-
-      <hr />
-
-      <footer class="footer">
-          <a href="{{ space.permalink }}.atom" title="link to RSS feed for {{ space.title }}" class="rss-link">RSS feed for {{ space.title }}</a>
-          <p class="powered-by">{{ space.title }} is powered by <a href="http://rusic.com" title="link to Rusic">Rusic</a></p>
-      </footer>
-
-    </div> <!-- end wrapper -->
-
     {% if params.login == 'success' and current_participant and current_participant.missing_email_address? %}
-      <div class="modal-cover" id="emailCaptureModalCover"></div>
-      <div class="modal" id="emailCaptureModal">
-        <h3>Please enter your email address:</h3>
-        <br/>
-        <form action="/participant" method="post">
-          <input type="text" name="participant[email_address]" placeholder="you@example.com"/>
-          <input type="submit" value="Submit" class="btn"/>
-        </form>
+      <div class="modal-cover" id="emailCaptureModalCover">
+        <div class="modal" id="emailCaptureModal">
+          <h3>Please enter your email address:</h3>
+          <br/>
+          <form action="/participant" method="post">
+            <input type="text" name="participant[email_address]" placeholder="you@example.com"/>
+            <input type="submit" value="Submit" class="btn"/>
+          </form>
+        </div>
       </div>
     {% endif %}
 
-    <!-- Javascripts -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="{{ 'bootstrap.js' | javascript_url }}"></script>
-    <script src="{{ 'jquery-sharrre-1-2-0-min.js' | javascript_url }}"></script>
-    <script src="{{ 'jquery-validate-min.js' | javascript_url }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="{{ 'bootstrap-typeahead.js' | javascript_url }}"></script>
+    <script src="{{ 'tagmanager.js' | javascript_url }}"></script>
+    <script src="https://teezilla.s3.amazonaws.com/javascripts/fancybox/jquery.fancybox-1.3.4.pack.js" type="text/javascript"></script>
     <script src="{{ 'scripts.js' | javascript_url }}"></script>
+
+    {% unless current_user %}
+      <div style="display: none;">
+        <div id="lightbox-sign-in">
+          <h2>Sign in to ask questions </h2>
+          <a href="/auth/linkedin" class="btn basic"><span></span>Login with LinkedIn</a>
+          <a href="/auth/twitter" class="btn basic"><span></span>Login with Twitter</a>
+          <a href="/auth/facebook" class="btn basic"><span></span>Login with Facebook</a>
+        </div>
+      </div>
+    {% endunless %}
+
+     <footer class="footer">
+       <a href="{{ space.permalink }}.atom" title="link to RSS feed for {{ space.title }}" class="rss-link">RSS feed for {{ space.title }}</a>
+       <p class="powered-by">{{ space.title }} is powered by <a href="http://rusic.com" title="link to Rusic">Rusic</a></p>
+      </footer>
   </body>
 </html>
