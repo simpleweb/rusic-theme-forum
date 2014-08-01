@@ -51,4 +51,12 @@ customAttributes:
     defaultValue: "#3ae7c0"
     type: String
     helpText: "Set the color for the links when they're hovered over"
+  attribute: background_image
+    defaultValue:
+    type: String
+    helpText: "add in a background picture for your forum"
+  attribute: forum_background_color
+    defaultValue: #fff
+    type: String
+    helpText: "set the background color for the forum"
 

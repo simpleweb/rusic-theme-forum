@@ -1071,6 +1071,7 @@ section {
 #inner-wrapper {
   width: 1000px;
   margin: 0 auto;
+  padding-top: 30px;
 }
 .page-header {
   margin: 0;
